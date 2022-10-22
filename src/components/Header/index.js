@@ -17,18 +17,22 @@ flex-direction: row;
 list-style-type: none;
 `
 
+const ListItem = styled.li`
+padding: 25px;
+`
+
 function Header() {
 
     return <Heading>
         <Navigation>
             <List>
-                <li>Menu</li>
-                <li>Szukaj</li>
+                <ListItem>Menu</ListItem>
+                <ListItem>Szukaj</ListItem>
             </List>
             <List>
-                <li>Konto</li>
-                <li>Ulubione</li>
-                <li>Koszyk</li>
+                <ListItem>Konto</ListItem>
+                <ListItem>Ulubione</ListItem>
+                <ListItem>Koszyk</ListItem>
             </List>
 
         </Navigation>
