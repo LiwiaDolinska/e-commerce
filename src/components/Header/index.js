@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Heading = styled.header`
 display: flex;
@@ -27,7 +29,8 @@ function Header() {
         <Navigation>
             <List>
                 <ListItem>Menu</ListItem>
-                <ListItem>Szukaj</ListItem>
+
+                <ListItem><FontAwesomeIcon icon={faMagnifyingGlass} />Szukaj</ListItem>
             </List>
             <List>
                 <ListItem>Konto</ListItem>

@@ -1,9 +1,13 @@
-import './App.css';
 import MainPage from "./pages/MainPage";
+import { Routes, Route, Link } from "react-router-dom";
+
 
 function App() {
   return (
-    <MainPage />
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="account" element={<div>Acoount</div>} />
+    </Routes>
   );
 }
 
