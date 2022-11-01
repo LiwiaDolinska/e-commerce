@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faUser, faHeart, faBasketShopping } from '@fortawesome/free-solid-svg-icons';
 
 const Heading = styled.header`
 display: flex;
@@ -30,12 +30,12 @@ function Header() {
             <List>
                 <ListItem>Menu</ListItem>
 
-                <ListItem><FontAwesomeIcon icon={faMagnifyingGlass} />Szukaj</ListItem>
+                <ListItem><FontAwesomeIcon icon={faMagnifyingGlass} style={{ paddingRight: "10px" }} />Szukaj</ListItem>
             </List>
             <List>
-                <ListItem>Konto</ListItem>
-                <ListItem>Ulubione</ListItem>
-                <ListItem>Koszyk</ListItem>
+                <ListItem><FontAwesomeIcon icon={faUser} />Konto</ListItem>
+                <ListItem><FontAwesomeIcon icon={faHeart} />Ulubione</ListItem>
+                <ListItem><FontAwesomeIcon icon={faBasketShopping} />Koszyk</ListItem>
             </List>
 
         </Navigation>
