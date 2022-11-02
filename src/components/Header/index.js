@@ -21,6 +21,7 @@ list-style-type: none;
 
 const ListItem = styled.li`
 padding: 25px;
+font-family: 'Lato', sans-serif;
 `
 
 function Header() {
@@ -33,9 +34,9 @@ function Header() {
                 <ListItem><FontAwesomeIcon icon={faMagnifyingGlass} style={{ paddingRight: "10px" }} />Szukaj</ListItem>
             </List>
             <List>
-                <ListItem><FontAwesomeIcon icon={faUser} />Konto</ListItem>
-                <ListItem><FontAwesomeIcon icon={faHeart} />Ulubione</ListItem>
-                <ListItem><FontAwesomeIcon icon={faBasketShopping} />Koszyk</ListItem>
+                <ListItem><FontAwesomeIcon icon={faUser} style={{ paddingRight: "10px" }} />Konto</ListItem>
+                <ListItem><FontAwesomeIcon icon={faHeart} style={{ paddingRight: "10px" }} />Ulubione</ListItem>
+                <ListItem><FontAwesomeIcon icon={faBasketShopping} style={{ paddingRight: "10px" }} />Koszyk</ListItem>
             </List>
 
         </Navigation>
