@@ -1,6 +1,9 @@
 import MainPage from "./pages/MainPage";
 import CollectionPage from "./pages/CollectionPage";
 import { Routes, Route, Link } from "react-router-dom";
+import { womenCollectionPhotos } from "./collectionPhotos";
+import { menCollectionPhotos } from "./collectionPhotos";
+
 
 
 function App() {
@@ -8,8 +11,8 @@ function App() {
     <Routes>
       <Route path="/" element={<MainPage />} />
       <Route path="account" element={<div>Account</div>} />
-      <Route path="collection/women" element={<CollectionPage title="women-collection" />} />
-      <Route path="collection/men" element={<CollectionPage title="men-collection" />} />
+      <Route path="collection/women" element={<CollectionPage title="Women Collection" data={womenCollectionPhotos} />} />
+      <Route path="collection/men" element={<CollectionPage title="Men Collection" data={menCollectionPhotos} />} />
     </Routes>
   );
 }
