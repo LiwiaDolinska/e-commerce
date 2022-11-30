@@ -37,6 +37,7 @@ display: flex;
 justify-content: row;
 object-fit: cover;
 `
+
 const Gender = styled.h1`
 position: absolute;
 font-size: 50px;
