@@ -25,11 +25,11 @@ export const womenCollectionPhotos = [
 ]
 
 export const menCollectionPhotos = [
-    { src: menBlouse, title: "bluzki" },
-    { src: menCoat, title: "płaszcze" },
-    { src: menSweater, title: "swetry" },
-    { src: menTshirt, title: "t-shirty" },
-    { src: menTrousers, title: "spodnie" },
-    { src: menElegant, title: "eleganckie" },
+    { src: menBlouse, title: "bluzki", link: "/collection/men/blouse" },
+    { src: menCoat, title: "płaszcze", link: "/collection/men/coat" },
+    { src: menSweater, title: "swetry", link: "/collection/men/sweater" },
+    { src: menTshirt, title: "t-shirty", link: "/collection/men/t-shirt" },
+    { src: menTrousers, title: "spodnie", link: "/collection/men/trousers" },
+    { src: menElegant, title: "eleganckie", link: "/collection/men/elegant" },
 
 ]
