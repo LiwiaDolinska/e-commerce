@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom"
 
 const PhotoBox = styled.div`
 display: flex;
 flex-wrap: wrap;
 justify-content: space-around;
 font-family: 'Lato', sans-serif;
+cursor: pointer;
 `
 const MappedPhoto = styled.div`
 position: relative; 
@@ -22,10 +24,10 @@ left: 0;
 function CollectionPage(props) {
     return <>
         <h1>{props.title}</h1>
-        <PhotoBox>{props.data.map((photo) => <MappedPhoto>
-            <Image src={photo.src} height="550" width="400" />
-            <Category> {photo.title}</Category>
-        </MappedPhoto>)}
+        <PhotoBox>{props.data.map((category) => <Link to={category.link}><MappedPhoto>
+            <Image src={category.src} height="550" width="400" />
+            <Category> {category.title}</Category>
+        </MappedPhoto></Link>)}
         </PhotoBox>
     </>
 }

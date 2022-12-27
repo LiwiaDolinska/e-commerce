@@ -15,13 +15,13 @@ import menElegant from "./assets/photos/MenCollectionPhotos/elegant.jpg";
 
 
 export const womenCollectionPhotos = [
-    { src: womenBlouse, title: "bluzki" },
-    { src: womenDress, title: "sukienki" },
-    { src: womenCoat, title: "płaszcze" },
-    { src: womenRomper, title: "kombinezony" },
-    { src: womenSkirt, title: "spódnice" },
-    { src: womenSweater, title: "swetry" },
-    { src: womenTshirt, title: "t-shirty" },
+    { src: womenBlouse, title: "bluzki", link: "/collection/women/blouse" },
+    { src: womenDress, title: "sukienki", link: "/collection/women/dress" },
+    { src: womenCoat, title: "płaszcze", link: "/collection/women/coat" },
+    { src: womenRomper, title: "kombinezony", link: "/collection/women/romper" },
+    { src: womenSkirt, title: "spódnice", link: "/collection/women/skirt" },
+    { src: womenSweater, title: "swetry", link: "/collection/women/sweater" },
+    { src: womenTshirt, title: "t-shirty", link: "/collection/women/t-shirt" },
 ]
 
 export const menCollectionPhotos = [
