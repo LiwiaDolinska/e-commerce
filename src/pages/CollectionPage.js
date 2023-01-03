@@ -3,8 +3,10 @@ import { Link } from "react-router-dom"
 
 const PhotoBox = styled.div`
 display: flex;
+flex-direction: row;
 flex-wrap: wrap;
 justify-content: space-around;
+gap: 15px;
 font-family: 'Lato', sans-serif;
 cursor: pointer;
 `

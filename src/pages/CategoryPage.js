@@ -1,26 +1,47 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+const StyledLink = styled(Link)`
+text-decoration: none;
+`
+
+const CategoryBox = styled.div`
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-around;
+gap: 15px;
+`
 
 const Photo = styled.img`
 height: 400px;
 width: 400px;
+object-fit: cover;
+`
+const ProductTitle = styled.h2`
+color: black;
+font-size: 30px;
+text-decoration: none;
+`
+const ProductPrice = styled.h3`
+color: black;
 `
 
 function CategoryPage(props) {
     return <>
         <h1>{props.title}</h1>
-        <div>
-            {props.data.map((product) => <Link>
+        <CategoryBox>
+            {props.data.map((product) => <StyledLink to={`/product/${product.id}`}>
                 <Photo src={product.src}></Photo>
-                <h2>{product.title}</h2>
-                <h3>{product.price}</h3>
+                <ProductTitle>{product.title}</ProductTitle>
+                <ProductPrice>{product.price}</ProductPrice>
 
-            </Link>
+            </StyledLink>
             )}
-        </div>
+        </CategoryBox>
 
     </>
 }
 
 export default CategoryPage;
+
