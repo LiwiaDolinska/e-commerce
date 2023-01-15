@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { allProducts } from "../categoryPhotos";
+import { useState } from 'react';
 
 
 const Section = styled.div`
@@ -52,20 +53,35 @@ background-color: black;
 color: white;
 margin: 5px;
 font-weight: 600;
+cursor: pointer;
 `
 const HeartButton = styled.button`
 width: 15%;
 height: 35px;
 margin: 1px;
 border: 1px solid black;
+cursor: pointer;
 `
 const Description = styled.p`
 margin-top: 100px;
 `
 
-function ProductPage() {
+
+function ProductPage(props) {
+    const { onAddToBasket } = props
     let params = useParams();
     const product = allProducts.find(product => product.id === params.productId)
+    const [size, setSize] = useState("XS");
+
+    const handleClick = (item) => {
+        onAddToBasket(item)
+    }
+
+    const handleSelect = (event) => {
+        console.log(event.target.value)
+        setSize(event.target.value)
+    }
+
     return <Section>
         <PhotoSection>
             <Photo src={product.src} />
@@ -74,7 +90,7 @@ function ProductPage() {
             <Company>{product.company}</Company>
             <Title>{product.title}</Title>
             <Price>{product.price}</Price>
-            <Select>
+            <Select onChange={handleSelect}>
                 <option value="XS">XS</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
@@ -83,7 +99,7 @@ function ProductPage() {
                 <option value="XXL">XXL</option>
             </Select>
             <div>
-                <Basket>Dodaj do koszyka</Basket>
+                <Basket onClick={() => handleClick({ id: product.id, size, })}>Dodaj do koszyka</Basket>
                 <HeartButton><FontAwesomeIcon icon={faHeart} /></HeartButton>
             </div>
             <Description>{product.description}</Description>
