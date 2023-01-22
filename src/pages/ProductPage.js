@@ -74,7 +74,6 @@ function ProductPage(props) {
     let params = useParams();
     const product = allProducts.find(product => product.id === params.productId)
     const isFavourite = !!favouriteProducts.find(favourite => favourite.id === params.productId)
-    console.log(isFavourite)
     const [size, setSize] = useState("XS");
 
     const handleClick = (item) => {
@@ -108,7 +107,7 @@ function ProductPage(props) {
             </Select>
             <div>
                 <Basket onClick={() => handleClick({ id: product.id, size, })}>Dodaj do koszyka</Basket>
-                <HeartButton onClick={() => handleClickFavourite({ id: product.id })}><FontAwesomeIcon icon={faHeart} /></HeartButton>
+                <HeartButton onClick={() => handleClickFavourite({ id: product.id })}><FontAwesomeIcon icon={isFavourite ? solidFaHeart : faHeart} /></HeartButton>
             </div>
             <Description>{product.description}</Description>
         </DescriptionSection>
