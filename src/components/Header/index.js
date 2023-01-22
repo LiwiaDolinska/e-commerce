@@ -36,7 +36,7 @@ function Header() {
             </List>
             <List>
                 <ListItem><FontAwesomeIcon icon={faUser} style={{ paddingRight: "10px" }} />Konto</ListItem>
-                <ListItem><FontAwesomeIcon icon={faHeart} style={{ paddingRight: "10px" }} />Ulubione</ListItem>
+                <ListItem><Link to="favourite"><FontAwesomeIcon icon={faHeart} style={{ paddingRight: "10px" }} />Ulubione</Link></ListItem>
                 <ListItem><Link to="basket"> <FontAwesomeIcon icon={faBasketShopping} style={{ paddingRight: "10px" }} />Koszyk</Link></ListItem>
             </List>
 

@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as solidFaHeart } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { allProducts } from "../categoryPhotos";
@@ -61,6 +62,7 @@ height: 35px;
 margin: 1px;
 border: 1px solid black;
 cursor: pointer;
+
 `
 const Description = styled.p`
 margin-top: 100px;
@@ -68,9 +70,11 @@ margin-top: 100px;
 
 
 function ProductPage(props) {
-    const { onAddToBasket } = props
+    const { onAddToBasket, onAddToFavourite, favouriteProducts } = props
     let params = useParams();
     const product = allProducts.find(product => product.id === params.productId)
+    const isFavourite = !!favouriteProducts.find(favourite => favourite.id === params.productId)
+    console.log(isFavourite)
     const [size, setSize] = useState("XS");
 
     const handleClick = (item) => {
@@ -80,6 +84,10 @@ function ProductPage(props) {
     const handleSelect = (event) => {
         console.log(event.target.value)
         setSize(event.target.value)
+    }
+
+    const handleClickFavourite = (item) => {
+        onAddToFavourite(item)
     }
 
     return <Section>
@@ -100,7 +108,7 @@ function ProductPage(props) {
             </Select>
             <div>
                 <Basket onClick={() => handleClick({ id: product.id, size, })}>Dodaj do koszyka</Basket>
-                <HeartButton><FontAwesomeIcon icon={faHeart} /></HeartButton>
+                <HeartButton onClick={() => handleClickFavourite({ id: product.id })}><FontAwesomeIcon icon={faHeart} /></HeartButton>
             </div>
             <Description>{product.description}</Description>
         </DescriptionSection>
