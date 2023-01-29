@@ -70,11 +70,12 @@ margin-top: 100px;
 
 
 function ProductPage(props) {
-    const { onAddToBasket, onAddToFavourite, favouriteProducts } = props
+    const { onAddToBasket, onAddToFavourite, onRemoveFromFavourite, favouriteProducts } = props
     let params = useParams();
     const product = allProducts.find(product => product.id === params.productId)
-    const isFavourite = !!favouriteProducts.find(favourite => favourite.id === params.productId)
+    const isFavourite = !!favouriteProducts.find(id => id === params.productId)
     const [size, setSize] = useState("XS");
+    console.log(isFavourite)
 
     const handleClick = (item) => {
         onAddToBasket(item)
@@ -86,7 +87,13 @@ function ProductPage(props) {
     }
 
     const handleClickFavourite = (item) => {
-        onAddToFavourite(item)
+        if (isFavourite) {
+            onRemoveFromFavourite(item)
+
+        } else {
+            onAddToFavourite(item)
+
+        }
     }
 
     return <Section>
@@ -106,8 +113,8 @@ function ProductPage(props) {
                 <option value="XXL">XXL</option>
             </Select>
             <div>
-                <Basket onClick={() => handleClick({ id: product.id, size, })}>Dodaj do koszyka</Basket>
-                <HeartButton onClick={() => handleClickFavourite({ id: product.id })}><FontAwesomeIcon icon={isFavourite ? solidFaHeart : faHeart} /></HeartButton>
+                <Basket onClick={() => handleClick({ id: product.id, size, quantity: 1 })}>Dodaj do koszyka</Basket>
+                <HeartButton onClick={() => handleClickFavourite(product.id)}><FontAwesomeIcon icon={isFavourite ? solidFaHeart : faHeart} /></HeartButton>
             </div>
             <Description>{product.description}</Description>
         </DescriptionSection>

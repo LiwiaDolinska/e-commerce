@@ -1,30 +1,61 @@
 import { allProducts } from "../categoryPhotos"
 import styled from "styled-components"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
 
 const FavouriteItem = styled.div`
 display: inline-block;
 margin: 30px;
 `
 const FavouritePhoto = styled.img`
-width: 300px;
+width: 200px;
+height: 300px;
+object-fit: cover;
 `
-const FavouriteDescription = styled.p`
+const TitleDescription = styled.p`
 margin: 30px;
+font-family:gfont,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+font-weight: 400;
+font-size: 20px;
+cursor: pointer;
+`
+const CompanyDescription = styled.p`
+margin: 30px;
+color: #747474!important;
+`
+const Price = styled.p`
+text-align: right;
+font-size: 15px;
+`
+
+const PhotoDiv = styled.div`
+position: relative;
+margin: 30px;
+`
+const Icon = styled.div`
+position: absolute;
+top: 10px;
+right: 10px;
 `
 
 function FavouritePage(props) {
-    const favouriteList = props.favouriteProducts.map(item => {
-        const favouriteInfo = allProducts.find(element => element.id === item.id)
-        return { ...favouriteInfo, ...item }
+    const favouriteList = props.favouriteProducts.map(id => {
+        const favouriteInfo = allProducts.find(element => element.id === id)
+        return favouriteInfo
     })
-    return <p>{favouriteList.map(favouriteElement => (
+    return <div>{favouriteList.map(favouriteElement => (
         <FavouriteItem>
-            <FavouritePhoto src={favouriteElement.src}></FavouritePhoto>
-            <FavouriteDescription>{favouriteElement.company}</FavouriteDescription>
-            <FavouriteDescription>{favouriteElement.title}</FavouriteDescription>
+            <PhotoDiv>
+                <FavouritePhoto src={favouriteElement.src}></FavouritePhoto>
+                <Icon><FontAwesomeIcon icon={faHeart} /></Icon>
+            </PhotoDiv>
+            <TitleDescription>{favouriteElement.title}</TitleDescription>
+            <CompanyDescription>{favouriteElement.company}</CompanyDescription>
+            <Price>{favouriteElement.price}</Price>
         </FavouriteItem>
     )
-    )}</p>
+    )}</div>
 
 }
 

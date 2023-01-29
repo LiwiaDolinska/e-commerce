@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faUser, faHeart, faBasketShopping } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
+import logo from "../../assets/photos/logo.jpg";
 
 const Heading = styled.header`
 display: flex;
@@ -25,6 +26,11 @@ padding: 25px;
 font-family: 'Lato', sans-serif;
 `
 
+const Image = styled.img`
+width: 100px; 
+height: 100px;
+`
+
 function Header() {
 
     return <Heading>
@@ -34,6 +40,11 @@ function Header() {
 
                 <ListItem><FontAwesomeIcon icon={faMagnifyingGlass} style={{ paddingRight: "10px" }} />Szukaj</ListItem>
             </List>
+            <Link to="/">
+                <List>
+                    <Image src={logo}></Image>
+                </List>
+            </Link>
             <List>
                 <ListItem><FontAwesomeIcon icon={faUser} style={{ paddingRight: "10px" }} />Konto</ListItem>
                 <ListItem><Link to="favourite"><FontAwesomeIcon icon={faHeart} style={{ paddingRight: "10px" }} />Ulubione</Link></ListItem>

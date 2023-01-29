@@ -25,6 +25,12 @@ function App() {
     setFavouriteProducts([...favouriteProducts, item])
   }
 
+  const handleRemoveFromFavourite = (id) => {
+    //filtrowanie zeby dostać tablice bez tego id
+    const removeFunction = favouriteProducts.filter(element => id !== element.id)
+    setFavouriteProducts([...removeFunction])
+  }
+
   return (
     <>
       <Header />
@@ -35,7 +41,7 @@ function App() {
         <Route path="collection/men" element={<CollectionPage title="Men Collection" data={menCollectionPhotos} />} />
         <Route path="collection/women/*" element={<CategoryPage title="Bluzki" data={womenCategoryProducts} />} />
         <Route path="collection/men/*" element={<CategoryPage title="Eleganckie" data={menCategoryProducts} />} />
-        <Route path="product/:productId" element={<ProductPage onAddToBasket={handleAddProduct} onAddToFavourite={handleAddToFavourite} favouriteProducts={favouriteProducts} />} />
+        <Route path="product/:productId" element={<ProductPage onAddToBasket={handleAddProduct} onAddToFavourite={handleAddToFavourite} onRemoveFromFavourite={handleRemoveFromFavourite} favouriteProducts={favouriteProducts} />} />
         <Route path="basket" element={<BasketPage productsInBasket={productsInBasket} />} />
         <Route path="favourite" element={<FavouritePage favouriteProducts={favouriteProducts} />} />
       </Routes>
