@@ -1,61 +1,59 @@
 import { allProducts } from "../categoryPhotos"
 import styled from "styled-components"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faMinus, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+
 
 const GridContainer = styled.div`
 display: grid;
-grid-template-columns: 2fr 1fr 1fr 1fr;
-grid-template-rows: 1fr 1fr 1fr 1fr;
+grid-template-columns: 500px 1fr 1fr 1fr;
+grid-template-rows: 200px 1fr 1fr 1fr;
+row-gap: 30px;
+`
+const Item = styled.p`
+align-self: center;
+`
+const ProductInfo = styled.div`
+display: flex;
 `
 
 const Photo = styled.img`
-width: 200px;
-height: 300px;
+width: 300px;
+height: 400px;
 object-fit: cover;
-margin: 15px;
-grid-column: 1/2;
-grid-row: 2/3;
-
 `
-const ProductDescription = styled.div`
+const QuantityDiv = styled.div`
+margin: 16px;
 display: flex;
-grid-column; 2/3;
-grid-row:2/3;
-
 `
-const ProductTitle = styled.p`
-margin: 20px 10px;
-font-family:gfont,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-font-weight: 400;
-font-size: 20px;
+const Button = styled.button`
+width: 26px;
+height: 25px;
 `
-const ProductCompany = styled.p`
-color: #747474!important;
-font-size: 17px;
-margin: 20px 10px
-`
-const ProductSize = styled.p`
-font-size: 19px;
-font-weight: 300;
-margin-top: 50px;
-margin-left: 10px;
+const Quantity = styled.input`
+height: 20px;
+width: 30px;
+margin-left: 5px;
+margin-right: 5px;
 `
 
-const Item = styled.p`
-text-decoration: underline;
-`
-const ProductPrice = styled.p`
-font-size: 18px;
-margin-top: 20px;
-font-weight: 300;
-grid-column: 2/3;
-grid-row: 2/3;
-`
 
 function BasketPage(props) {
+    const [quantity, setQuantity] = useState('1')
     const basketItems = props.productsInBasket.map(item => {
         const allProductInfo = allProducts.find(element => element.id === item.id)
         return { ...allProductInfo, ...item }
+
     })
+
+    const handleIncrement = () => {
+        setQuantity(quantity + 1)
+    }
+    const handleDecrement = () => {
+        setQuantity(quantity - 1)
+    }
+
     return <>
         <h1>KOSZYK</h1>
         <GridContainer>
@@ -63,21 +61,24 @@ function BasketPage(props) {
             <Item>cena</Item>
             <Item>ilość</Item>
             <Item>suma</Item>
-            {basketItems.map(item => (
-                <ProductDescription>
+            {basketItems.map(item => (<>
+                <ProductInfo>
                     <Photo src={item.src}></Photo>
-
-                    <ProductTitle>{item.title}</ProductTitle>
-                    <ProductCompany>{item.company}</ProductCompany>
-                    <ProductSize>rozmiar: {item.size}</ProductSize>
-
-                    <ProductPrice>{item.price}</ProductPrice>
-
-                    <button>plus</button>
-                    <span>{item.quantity}</span>
-                    <button>minus</button>
-
-                </ProductDescription>
+                    <div>
+                        <p>{item.title}</p>
+                        <p>{item.company}</p>
+                        <p>rozmiar: {item.size}</p>
+                    </div>
+                </ProductInfo>
+                <p>{item.price}</p>
+                <QuantityDiv>
+                    <Button onClick={() => handleDecrement()}><FontAwesomeIcon icon={faMinus} /></Button>
+                    <label></label>
+                    <Quantity type="number" value={item.quantity}></Quantity>
+                    <Button onClick={() => handleIncrement()}><FontAwesomeIcon icon={faPlus} /></Button>
+                </QuantityDiv>
+                <p>300 zł</p>
+            </>
             ))}
         </GridContainer>
     </>

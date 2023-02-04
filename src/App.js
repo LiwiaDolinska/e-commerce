@@ -27,8 +27,9 @@ function App() {
 
   const handleRemoveFromFavourite = (id) => {
     //filtrowanie zeby dostać tablice bez tego id
-    const removeFunction = favouriteProducts.filter(element => id !== element.id)
-    setFavouriteProducts([...removeFunction])
+    const removedArray = favouriteProducts.filter(element => id === element.id)
+
+    setFavouriteProducts([...removedArray])
   }
 
   return (
