@@ -40,7 +40,7 @@ margin-right: 5px;
 
 
 function BasketPage(props) {
-    const [quantity, setQuantity] = useState('1')
+    const [quantity, setQuantity] = useState(1)
     const basketItems = props.productsInBasket.map(item => {
         const allProductInfo = allProducts.find(element => element.id === item.id)
         return { ...allProductInfo, ...item }
@@ -48,11 +48,21 @@ function BasketPage(props) {
     })
 
     const handleIncrement = () => {
-        setQuantity(quantity + 1)
+        setQuantity(function (prevQuantity) {
+            return (prevQuantity += 1);
+        });
     }
+
     const handleDecrement = () => {
-        setQuantity(quantity - 1)
+        setQuantity(function (prevQuantity) {
+            if (prevQuantity > 0) {
+                return (prevQuantity -= 1);
+            } else {
+                return (prevQuantity = 0)
+            }
+        });
     }
+
 
     return <>
         <h1>KOSZYK</h1>
@@ -72,10 +82,10 @@ function BasketPage(props) {
                 </ProductInfo>
                 <p>{item.price}</p>
                 <QuantityDiv>
-                    <Button onClick={() => handleDecrement()}><FontAwesomeIcon icon={faMinus} /></Button>
+                    <Button onClick={handleDecrement}><FontAwesomeIcon icon={faMinus} /></Button>
                     <label></label>
-                    <Quantity type="number" value={item.quantity}></Quantity>
-                    <Button onClick={() => handleIncrement()}><FontAwesomeIcon icon={faPlus} /></Button>
+                    <Quantity type="number" value={quantity}></Quantity>
+                    <Button onClick={handleIncrement}><FontAwesomeIcon icon={faPlus} /></Button>
                 </QuantityDiv>
                 <p>300 zł</p>
             </>
