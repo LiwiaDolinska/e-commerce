@@ -50,13 +50,15 @@ function BasketPage(props) {
         props.handleChangeQuantity(id, prevQuantity + 1)
     }
 
-    const handleDecrement = (prevQuantity) => {
+    const handleDecrement = (id, prevQuantity) => {
+        //dlaczego id wpisać w 56 a nie 55
         if (prevQuantity > 0) {
-            return prevQuantity - 1;
+            return props.handleChangeQuantity(id, prevQuantity - 1);
         } else {
             return 0
         }
     }
+
     const handleQuantityChange = (id, quantity) => {
         props.handleChangeQuantity(id, quantity)
     }
@@ -79,7 +81,7 @@ function BasketPage(props) {
                 </ProductInfo>
                 <p>{item.price}</p>
                 <QuantityDiv>
-                    <Button onClick={handleDecrement}><FontAwesomeIcon icon={faMinus} /></Button>
+                    <Button onClick={() => handleDecrement(item.id, item.quantity)}><FontAwesomeIcon icon={faMinus} /></Button>
                     <label></label>
                     <Quantity value={item.quantity} onChange={(event) => handleQuantityChange(item.id, +event.target.value)}></Quantity>
                     <Button onClick={() => handleIncrement(item.id, item.quantity)}><FontAwesomeIcon icon={faPlus} /></Button>
