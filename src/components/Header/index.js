@@ -28,7 +28,6 @@ font-family: 'Lato', sans-serif;
 
 const Image = styled.img`
 width: 100px; 
-height: 100px;
 `
 
 function Header() {
@@ -42,7 +41,7 @@ function Header() {
             </List>
             <Link to="/">
                 <List>
-                    <Image src={logo}></Image>
+                    <Image src={logo} alt="logo"></Image>
                 </List>
             </Link>
             <List>

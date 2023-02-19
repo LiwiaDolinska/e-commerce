@@ -52,7 +52,7 @@ function FavouritePage(props) {
             </PhotoDiv>
             <TitleDescription>{favouriteElement.title}</TitleDescription>
             <CompanyDescription>{favouriteElement.company}</CompanyDescription>
-            <Price>{favouriteElement.price}</Price>
+            <Price>{favouriteElement.price} zł</Price>
         </FavouriteItem>
     )
     )}</div>

@@ -17,25 +17,25 @@ import photo6 from "./assets/photos/WomenCategoryPhotos/photo6.jpg";
 
 
 export const womenCategoryProducts = [
-    { src: photo1, company: "Stradivarius", title: "Bluzka", price: "100,00 zł", id: "1", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo2, company: "Zara", title: "Spodnie", price: "300,00 zł", id: "2", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo3, company: "Stradivarius", title: "Bluzka", price: "100,00 zł", id: "3", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo4, company: "Zara", title: "Spodnie", price: "300,00 zł", id: "4", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo5, company: "Stradivarius", title: "Bluzka", price: "100,00 zł", id: "5", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo6, company: "Zara", title: "Spodnie", price: "300,00 zł", id: "6", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo7, company: "Stradivarius", title: "Bluzka", price: "100,00 zł", id: "7", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo8, company: "Zara", title: "Spodnie", price: "300,00 zł", id: "8", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo1, company: "Stradivarius", title: "Bluzka", price: 100, id: "1", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo2, company: "Zara", title: "Spodnie", price: 300, id: "2", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo3, company: "Stradivarius", title: "Bluzka", price: 100, id: "3", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo4, company: "Zara", title: "Spodnie", price: 300, id: "4", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo5, company: "Stradivarius", title: "Bluzka", price: 100, id: "5", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo6, company: "Zara", title: "Spodnie", price: 30, id: "6", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo7, company: "Stradivarius", title: "Bluzka", price: 10, id: "7", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo8, company: "Zara", title: "Spodnie", price: 300, id: "8", description: "100% bawełna. Prać w 30 stopniach. " },
 ]
 
 export const menCategoryProducts = [
-    { src: photo11, company: "Stradivarius", title: "Bluzka", price: "100,00 zł", id: "11", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo12, company: "Zara", title: "Płaszcz", price: "300,00 zł", id: "12", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo13, company: "Stradivarius", title: "Bluzka", price: "100,00 zł", id: "13", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo14, company: "Zara", title: "Płaszcz", price: "300,00 zł", id: "14", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo15, company: "Stradivarius", title: "Bluzka", price: "100,00 zł", id: "15", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo16, company: "Zara", title: "Płaszcz", price: "300,00 zł", id: "16", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo9, company: "Stradivarius", title: "Bluzka", price: "100,00 zł", id: "9", description: "100% bawełna. Prać w 30 stopniach. " },
-    { src: photo10, company: "Zara", title: "Płaszcz", price: "300,00 zł", id: "10", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo11, company: "Stradivarius", title: "Bluzka", price: 100, id: "11", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo12, company: "Zara", title: "Płaszcz", price: 300, id: "12", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo13, company: "Stradivarius", title: "Bluzka", price: 100, id: "13", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo14, company: "Zara", title: "Płaszcz", price: 300, id: "14", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo15, company: "Stradivarius", title: "Bluzka", price: 100, id: "15", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo16, company: "Zara", title: "Płaszcz", price: 300, id: "16", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo9, company: "Stradivarius", title: "Bluzka", price: 100, id: "9", description: "100% bawełna. Prać w 30 stopniach. " },
+    { src: photo10, company: "Zara", title: "Płaszcz", price: 300, id: "10", description: "100% bawełna. Prać w 30 stopniach. " },
 
 ]
 

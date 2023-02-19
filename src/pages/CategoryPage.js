@@ -9,7 +9,6 @@ const CategoryBox = styled.div`
 display: flex;
 flex-direction: row;
 flex-wrap: wrap;
-justify-content: space-around;
 gap: 15px;
 `
 
@@ -17,6 +16,8 @@ const Photo = styled.img`
 height: 400px;
 width: 400px;
 object-fit: cover;
+justify-content: flex-start;
+
 `
 const ProductTitle = styled.h2`
 color: black;
