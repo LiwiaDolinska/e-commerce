@@ -70,15 +70,19 @@ margin-top: 100px;
 
 
 function ProductPage(props) {
-    const { onAddToBasket, onAddToFavourite, onRemoveFromFavourite, favouriteProducts } = props
+    const { onAddToBasket, onAddToFavourite, onRemoveFromFavourite, favouriteProducts, onChangeQuantity, productsInBasket } = props
     let params = useParams();
     const product = allProducts.find(product => product.id === params.productId)
     const isFavourite = !!favouriteProducts.find(id => id === params.productId)
     const [size, setSize] = useState("XS");
-    console.log(isFavourite)
 
     const handleClick = (item) => {
-        onAddToBasket(item)
+        const doubledProduct = productsInBasket.find(product => product.id === item.id)
+        if (doubledProduct) {
+            return onChangeQuantity(item.id, item.quantity + 1)
+        } else {
+            return onAddToBasket(item)
+        }
     }
 
     const handleSelect = (event) => {

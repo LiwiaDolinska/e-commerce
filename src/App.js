@@ -11,6 +11,7 @@ import BasketPage from "./pages/BasketPage";
 import { useState } from "react";
 import FavouritePage from "./pages/FavouritePage";
 import { faV } from "@fortawesome/free-solid-svg-icons";
+import SearchPage from "./pages/SearchPage";
 
 
 function App() {
@@ -51,9 +52,10 @@ function App() {
         <Route path="collection/men" element={<CollectionPage title="Men Collection" data={menCollectionPhotos} />} />
         <Route path="collection/women/*" element={<CategoryPage title="Bluzki" data={womenCategoryProducts} />} />
         <Route path="collection/men/*" element={<CategoryPage title="Eleganckie" data={menCategoryProducts} />} />
-        <Route path="product/:productId" element={<ProductPage onAddToBasket={handleAddProduct} onAddToFavourite={handleAddToFavourite} onRemoveFromFavourite={handleRemoveFromFavourite} favouriteProducts={favouriteProducts} />} />
+        <Route path="product/:productId" element={<ProductPage onAddToBasket={handleAddProduct} onAddToFavourite={handleAddToFavourite} onRemoveFromFavourite={handleRemoveFromFavourite} favouriteProducts={favouriteProducts} onChangeQuantity={handleChangeQuantity} productsInBasket={productsInBasket} />} />
         <Route path="basket" element={<BasketPage productsInBasket={productsInBasket} handleChangeQuantity={handleChangeQuantity} />} />
         <Route path="favourite" element={<FavouritePage favouriteProducts={favouriteProducts} />} />
+        <Route path="search" element={<SearchPage />} />
       </Routes>
     </>
   );

@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faUser, faHeart, faBasketShopping } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faHeart, faBasketShopping } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import logo from "../../assets/photos/logo.jpg";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Heading = styled.header`
 display: flex;
@@ -37,7 +38,7 @@ function Header() {
             <List>
                 <ListItem>Menu</ListItem>
 
-                <ListItem><FontAwesomeIcon icon={faMagnifyingGlass} style={{ paddingRight: "10px" }} />Szukaj</ListItem>
+                <ListItem><SearchBar></SearchBar></ListItem>
             </List>
             <Link to="/">
                 <List>
