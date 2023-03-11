@@ -1,20 +1,16 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function SearchBar() {
-    let [searchParams, setSearchParams] = useSearchParams();
-    const [searchValue, setSearchValue] = useState('')
-    console.log(searchParams)
+    const [searchValue, setSearchValue] = useState("")
     const navigate = useNavigate();
     const handleSubmit = (event) => {
         event.preventDefault()
         navigate(`/search?phrase=${searchValue}`)
-        let params = searchValue
-        setSearchParams(params)
-        console.log(params)
+
     }
     return <div>
         <FontAwesomeIcon icon={faMagnifyingGlass} style={{ paddingRight: "10px" }} />
