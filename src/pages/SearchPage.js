@@ -1,5 +1,7 @@
 import { useSearchParams } from "react-router-dom"
 import { allProducts } from "../categoryPhotos"
+import ProductBox from "../components/ProductBox"
+import Listing from "../components/Listing"
 
 function SearchPage() {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -8,6 +10,7 @@ function SearchPage() {
         return product.title.toLowerCase() === searchValue.toLowerCase()
     })
 
-    return <p>{filteredProducts.map(product => <img src={product.src}></img>)}</p>
+    return <Listing>{filteredProducts.map(product =>
+        <ProductBox product={product} />)}</Listing>
 }
 export default SearchPage

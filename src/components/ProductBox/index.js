@@ -1,4 +1,10 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+
+const StyledLink = styled(Link)`
+
+`
 
 
 const Photo = styled.img`
@@ -24,11 +30,11 @@ font-weight: 300;
 `
 
 function ProductBox(props) {
-    return <>
+    return <StyledLink to={`/product/${props.product.id}`}>
         <Photo src={props.product.src}></Photo>
         <ProductTitle>{props.product.title}</ProductTitle>
         <ProductCompany>{props.product.company}</ProductCompany>
         <ProductPrice>{props.product.price} zł</ProductPrice>
-    </>
+    </StyledLink>
 }
 export default ProductBox

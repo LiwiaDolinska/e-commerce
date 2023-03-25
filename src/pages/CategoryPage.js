@@ -1,5 +1,7 @@
-import styled from "styled-components";
 import ProductBox from "../components/ProductBox/index"
+import Listing from "../components/Listing"
+import styled from "styled-components";
+
 
 const Title = styled.h1`
 margin-left: 10%;
@@ -9,20 +11,17 @@ letter-spacing: 2px;
 line-height: 2em;
 `
 
-const CategoryBox = styled.div`
-display: flex;
-justify-content: center;
-flex-direction: row;
-flex-wrap: wrap;
-gap: 15px;
-`
+
 
 function CategoryPage(props) {
     return <>
         <Title>{props.title}</Title>
-        <CategoryBox>
-            <ProductBox />
-        </CategoryBox>
+        <Listing>
+            {props.data.map((product) =>
+                <ProductBox product={product} />
+
+            )}
+        </Listing>
 
     </>
 }

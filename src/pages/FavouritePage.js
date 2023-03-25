@@ -2,6 +2,7 @@ import { allProducts } from "../categoryPhotos"
 import styled from "styled-components"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import ProductBox from "../components/ProductBox";
 
 
 const FavouriteItem = styled.div`
@@ -45,17 +46,9 @@ function FavouritePage(props) {
         return favouriteInfo
     })
     return <div>{favouriteList.map(favouriteElement => (
-        <FavouriteItem>
-            <PhotoDiv>
-                <FavouritePhoto src={favouriteElement.src}></FavouritePhoto>
-                <Icon><FontAwesomeIcon icon={faHeart} /></Icon>
-            </PhotoDiv>
-            <TitleDescription>{favouriteElement.title}</TitleDescription>
-            <CompanyDescription>{favouriteElement.company}</CompanyDescription>
-            <Price>{favouriteElement.price} zł</Price>
-        </FavouriteItem>
-    )
-    )}</div>
+        <ProductBox product={favouriteElement} />
+
+    ))}</div>
 
 }
 
