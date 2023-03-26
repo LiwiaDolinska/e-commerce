@@ -46,7 +46,17 @@ function FavouritePage(props) {
         return favouriteInfo
     })
     return <div>{favouriteList.map(favouriteElement => (
-        <ProductBox product={favouriteElement} />
+        <ProductBox product={favouriteElement} isSmall={favouriteElement ? (
+            <>
+                <FavouriteItem />
+                <FavouritePhoto />
+                <TitleDescription />
+                <CompanyDescription />
+                <Price />
+            </>
+        ) : (
+            <ProductBox />
+        )} />
 
     ))}</div>
 
