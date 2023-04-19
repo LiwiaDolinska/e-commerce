@@ -7,14 +7,14 @@ text-decoration: none;
 `
 
 const Photo = styled.img`
-height: 400px;
-width: 400px;
+height: ${props => props.isSmall ? "200px" : "400px"};
+width: ${props => props.isSmall ? "200px" : "400px"};
 object-fit: cover;
 justify-content: flex-start;
 `
 const ProductTitle = styled.h2`
 color: black;
-font-size: 30px;
+font-size: ${props => props.smallTitle ? "20px" : "30px"};
 font-weight: 400;
 text-decoration: none;
 `
@@ -29,9 +29,10 @@ font-weight: 300;
 `
 
 function ProductBox(props) {
+    console.log(props)
     return <StyledLink to={`/product/${props.product.id}`}>
-        <Photo src={props.product.src}></Photo>
-        <ProductTitle>{props.product.title}</ProductTitle>
+        <Photo isSmall={props.isMini} src={props.product.src}></Photo>
+        <ProductTitle smallTitle={props.isSmallTitle}>{props.product.title}</ProductTitle>
         <ProductCompany>{props.product.company}</ProductCompany>
         <ProductPrice>{props.product.price} zł</ProductPrice>
     </StyledLink>

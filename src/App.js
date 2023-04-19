@@ -12,6 +12,8 @@ import { useState } from "react";
 import FavouritePage from "./pages/FavouritePage";
 import { faV } from "@fortawesome/free-solid-svg-icons";
 import SearchPage from "./pages/SearchPage";
+import FormPage from "./pages/FormPage";
+import PaymentPage from "./pages/PaymentPage";
 
 
 function App() {
@@ -56,6 +58,8 @@ function App() {
         <Route path="basket" element={<BasketPage productsInBasket={productsInBasket} handleChangeQuantity={handleChangeQuantity} />} />
         <Route path="favourite" element={<FavouritePage favouriteProducts={favouriteProducts} />} />
         <Route path="search" element={<SearchPage />} />
+        <Route path="/form" element={<FormPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
       </Routes>
     </>
   );

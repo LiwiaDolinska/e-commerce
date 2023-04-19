@@ -5,15 +5,19 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { allProducts } from "../categoryPhotos";
 import { useState } from 'react';
+import Modal from '../components/Modal';
 
 
 const Section = styled.div`
 display: flex;
 max-width: 100%;
+justify-content: center;
+margin-top: 50px;
 `
 
 const PhotoSection = styled.div`
 margin: 20px;
+margin-right: 50px;
 `
 const DescriptionSection = styled.div`
 margin: 40px;
@@ -21,8 +25,8 @@ display: flex;
 flex-direction: column;
 `
 const Photo = styled.img`
-height: 600px;
-width: 400px;
+height: 700px;
+width: 500px;
 object-fit: cover;
 `
 const Company = styled.p`
@@ -83,6 +87,7 @@ function ProductPage(props) {
         } else {
             return onAddToBasket(item)
         }
+
     }
 
     const handleSelect = (event) => {
@@ -107,7 +112,7 @@ function ProductPage(props) {
         <DescriptionSection>
             <Company>{product.company}</Company>
             <Title>{product.title}</Title>
-            <Price>{product.price}</Price>
+            <Price>{product.price} zł</Price>
             <Select onChange={handleSelect}>
                 <option value="XS">XS</option>
                 <option value="S">S</option>
@@ -122,7 +127,9 @@ function ProductPage(props) {
             </div>
             <Description>{product.description}</Description>
         </DescriptionSection>
+        <Modal />
     </Section>
+
 }
 
 export default ProductPage;
