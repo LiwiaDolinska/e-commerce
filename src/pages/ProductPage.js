@@ -79,13 +79,15 @@ function ProductPage(props) {
     const product = allProducts.find(product => product.id === params.productId)
     const isFavourite = !!favouriteProducts.find(id => id === params.productId)
     const [size, setSize] = useState("XS");
+    const [show, setShow] = useState(false)
 
     const handleClick = (item) => {
         const doubledProduct = productsInBasket.find(product => product.id === item.id)
         if (doubledProduct) {
-            return onChangeQuantity(item.id, item.quantity + 1)
+            onChangeQuantity(item.id, item.quantity + 1)
         } else {
-            return onAddToBasket(item)
+            onAddToBasket(item)
+            setShow(true)
         }
 
     }
@@ -127,7 +129,7 @@ function ProductPage(props) {
             </div>
             <Description>{product.description}</Description>
         </DescriptionSection>
-        <Modal />
+        <Modal show={show} />
     </Section>
 
 }

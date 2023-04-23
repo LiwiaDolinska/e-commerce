@@ -163,7 +163,7 @@ function BasketPage(props) {
                 <p>dostawa: 10 zł </p>
                 <br></br>
                 <p>łączna kwota: {sumUpAll()} zł</p>
-                <SumUpButton onClick={() => navigate("/form")}><Link to="form"></Link>przejdź do kasy</SumUpButton>
+                <Link to="/form"><SumUpButton>przejdź do kasy</SumUpButton></Link>
                 <hr style={{ borderTop: "1px solid rgb(232, 232, 232)" }}></hr>
                 <p>akceptowane płatności</p>
                 <Icon><FontAwesomeIcon icon={faPaypal} /></Icon>

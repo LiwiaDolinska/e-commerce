@@ -13,8 +13,7 @@ import FavouritePage from "./pages/FavouritePage";
 import { faV } from "@fortawesome/free-solid-svg-icons";
 import SearchPage from "./pages/SearchPage";
 import FormPage from "./pages/FormPage";
-import PaymentPage from "./pages/PaymentPage";
-
+import SummaryPage from "./pages/SummaryPage"
 
 function App() {
   const [productsInBasket, setProductsInBasket] = useState([])
@@ -58,8 +57,8 @@ function App() {
         <Route path="basket" element={<BasketPage productsInBasket={productsInBasket} handleChangeQuantity={handleChangeQuantity} />} />
         <Route path="favourite" element={<FavouritePage favouriteProducts={favouriteProducts} />} />
         <Route path="search" element={<SearchPage />} />
-        <Route path="/form" element={<FormPage />} />
-        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="form" element={<FormPage />} />
+        <Route path="summary" element={<SummaryPage />} />
       </Routes>
     </>
   );

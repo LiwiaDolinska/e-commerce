@@ -4,6 +4,9 @@ import ProductBox from "../ProductBox";
 
 
 function Modal(props) {
+    if (!props.show) {
+        return null
+    }
     return <>
         {/* <Icon></Icon> */}
         <p>Produkt został dodany do koszyka</p>
