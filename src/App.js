@@ -58,7 +58,7 @@ function App() {
         <Route path="favourite" element={<FavouritePage favouriteProducts={favouriteProducts} />} />
         <Route path="search" element={<SearchPage />} />
         <Route path="form" element={<FormPage />} />
-        <Route path="summary" element={<SummaryPage />} />
+        {/* <Route path="summary" element={<SummaryPage />} /> */}
       </Routes>
     </>
   );

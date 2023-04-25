@@ -93,8 +93,6 @@ background-color: #f0ffff;
 `
 
 function BasketPage(props) {
-    const navigate = useNavigate();
-
     const basketItems = props.productsInBasket.map(item => {
         const allProductInfo = allProducts.find(element => element.id === item.id)
         return { ...allProductInfo, ...item }

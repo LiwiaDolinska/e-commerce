@@ -13,6 +13,7 @@ display: flex;
 max-width: 100%;
 justify-content: center;
 margin-top: 50px;
+background-color: ${props => props.isGrey ? "grey" : "white"}   ///?????
 `
 
 const PhotoSection = styled.div`
@@ -107,7 +108,7 @@ function ProductPage(props) {
         }
     }
 
-    return <Section>
+    return <Section isGrey={props.isModal}>
         <PhotoSection>
             <Photo src={product.src} />
         </PhotoSection>
@@ -129,7 +130,7 @@ function ProductPage(props) {
             </div>
             <Description>{product.description}</Description>
         </DescriptionSection>
-        <Modal show={show} />
+        <Modal show={show} onClose={() => setShow(false)} />
     </Section>
 
 }

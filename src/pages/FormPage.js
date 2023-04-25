@@ -7,6 +7,7 @@ import dpd from "../assets/photos/dpd.png";
 import inpost from "../assets/photos/inpost.png";
 import self from "../assets/photos/self.png";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 
 const FactureTitle = styled.h1`
@@ -184,6 +185,15 @@ letter-spacing: 1px;
 `
 
 function FormPage() {
+    const [name, setName] = useState("")
+    const [surname, setSurname] = useState("")
+    const [mail, setMail] = useState("")
+    const [address, setAddress] = useState("")
+    const [zipCode, setZipCode] = useState()
+    const [city, setCity] = useState("")
+    const [country, setCountry] = useState("")
+    const [number, setNumber] = useState()
+
     function onChangeValue(event) {
         console.log(event.target.value)
     }
@@ -194,38 +204,38 @@ function FormPage() {
                 <FactureTitle>dane do faktury</FactureTitle>
                 <div>
                     <Label ></Label>
-                    <Input type="text" placeholder="Imię"></Input>
+                    <Input type="text" placeholder="Imię" value={name} onChange={event => setName(event.target.value)}></Input>
                 </div>
                 <div>
                     <Label></Label>
-                    <Input type="text" placeholder="Nazwisko"></Input>
+                    <Input type="text" placeholder="Nazwisko" value={surname} onChange={event => setSurname(event.target.value)}></Input>
                 </div>
                 <div>
                     <Label>  </Label>
-                    <Input type="email" placeholder="E-mail"></Input>
+                    <Input type="email" placeholder="E-mail" value={mail} onChange={setMail}></Input>
                 </div>
 
-                {/* <hr style={{ width: "50%" }}></hr> */}
                 <p>adres dostawy</p>
+
                 <div>
                     <Label></Label>
-                    <Input type="text" placeholder="Ulica i numer"></Input>
-                </div>
-                <div>
-                    <Label>            </Label>
-                    <Input type="number" placeholder="Kod pocztowy"></Input>
+                    <Input type="text" placeholder="Ulica i numer" value={address} onChange={event => setAddress(event.target.value)}></Input>
                 </div>
                 <div>
                     <Label></Label>
-                    <Input type="text" placeholder="Miasto"></Input>
+                    <Input type="number" placeholder="Kod pocztowy" value={zipCode} onChange={event => setZipCode(event.target.value)}></Input>
                 </div>
                 <div>
                     <Label></Label>
-                    <Input type="text" placeholder="Kraj"></Input>
+                    <Input type="text" placeholder="Miasto" value={city} onChange={event => setCity(event.target.value)}></Input>
                 </div>
                 <div>
                     <Label></Label>
-                    <Input type="tel" placeholder="Nr telefonu"></Input>
+                    <Input type="text" placeholder="Kraj" value={country} onChange={event => setCountry(event.target.value)}></Input>
+                </div>
+                <div>
+                    <Label></Label>
+                    <Input type="tel" placeholder="Nr telefonu" value={number} onChange={event => setNumber(event.target.value)}></Input>
                 </div>
 
             </PersonalDataSection>
