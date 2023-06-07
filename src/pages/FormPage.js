@@ -6,8 +6,9 @@ import karta from "../assets/photos/karta.png"
 import dpd from "../assets/photos/dpd.png";
 import inpost from "../assets/photos/inpost.png";
 import self from "../assets/photos/self.png";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 
 
 const FactureTitle = styled.h1`
@@ -18,15 +19,22 @@ margin-top: 100px;
 margin-bottom: 100px;
 `
 
-const Form = styled.div`
+const Form = styled.form`
 display: flex;
-flex-direction: row;
+flex-direction: column;
 gap: 15px;
 margin-top: 30px;
+
 `
+const FormDiv = styled.div`
+display: flex;
+@media (max-width: 850px) {
+    flex-wrap: wrap;
+}
+`
+
 const PersonalDataSection = styled.div`
-width: 20%;
-margin-left: 10px;
+width: 500px;
 `
 
 const Label = styled.label`
@@ -45,8 +53,8 @@ margin-left: 20px;
 outline: 0px;
 `
 const DeliverySection = styled.div`
-width: 45%;
-margin-left: 0px;
+width: 500px;
+padding-left: 20px;
 `
 
 const DeliveryTitle = styled.h2`
@@ -54,37 +62,52 @@ font-family: Montserrat, sans-serif;
 font-size: 25px;
 letter-spacing: 2px;
 margin-top: 100px;
-margin-left: 30%;
 margin-bottom: 100px;
+padding-left: 70px;
 `
 const DeliveryList = styled.ul`
-display: flex;
-flex-direction: column;
+list-style-type: none;
+display: grid;
+grid-template-columns: 60px 100px 300px;
+grid-template-rows: 150px 150px 150px 150px;
 `
 
-const DeliveryChoice = styled.li`
-height: 100px;
-list-style-type: none;
-display: flex;
-width: 600px;
-align-items: center;
+const SelfInput = styled.input`
+grid-column: 1/2;
+grid-row: 1/2;
+align-self: center;
+cursor: pointer;
+margin-left: 30px;
 `
-const DeliveryInput = styled.input`
-height: 30px;
-width: 30px;
+const InpostInput = styled.input`
+grid-column: 1/2;
+grid-row: 2/3;
+align-self: center;
+cursor: pointer;
+margin-left: 30px;
+`
+const GlsInput = styled.input`
+grid-column: 1/2;
+grid-row: 3/4;
+align-self: center;
+cursor: pointer;
+margin-left: 30px;
+`
+const DpdInput = styled.input`
+grid-column: 1/2;
+grid-row: 4/5;
+align-self: center;
+cursor: pointer;
 margin-left: 30px;
 `
 
-const DeliveryTextDiv = styled.div`
-display: flex;
-`
 const DeliveryFirm = styled.p`
 color: black;
 font-family: Montserrat, sans-serif;
 font-size: 18px;
 letter-spacing: 1px;
 line-height: 20px;
-margin-left: 25px;
+margin-left: 20px;
 margin-right: 20px;
 `
 
@@ -93,7 +116,6 @@ color: #838383;
 font-family: Montserrat, sans-serif;
 font-size: 15px;
 font-size: 18px;
-
 margin-left: 20px;
 margin-right: 20px;
 `
@@ -102,6 +124,8 @@ const Price = styled.p`
 color: rgba(125,207,228,255);
 font-family: Montserrat, sans-serif;
 font-size: 18px;
+margin-left: 20px;
+margin-right: 20px;
 `
 const PaymentButton = styled.button`
 background-color: black;
@@ -112,15 +136,62 @@ width: 150px;
 font-size: 20px;
 cursor: pointer;
 `
-const Icon = styled.img`
+const SelfIcon = styled.img`
+grid-column: 2/3;
+grid-row: 1/2;
 border: none;
 height: 30px;
-width: auto;
+width: 40px;
 align-self: center;
 margin-left: 10px;
 `
+const InpostIcon = styled.img`
+grid-column: 2/3;
+grid-row: 2/3;
+border: none;
+height: 30px;
+width: 30px;
+align-self: center;
+margin-left: 10px;
+`
+const GlsIcon = styled.img`
+grid-column: 2/3;
+grid-row: 3/4;
+border: none;
+height: 30px;
+width: 60px;
+align-self: center;
+margin-left: 10px;
+`
+const DpdIcon = styled.img`
+grid-column: 2/3;
+grid-row: 4/5;
+border: none;
+height: 30px;
+width: 60px;
+align-self: center;
+margin-left: 10px;
+`
+const SelfTextDiv = styled.div`
+grid-column: 3/4;
+grid-row: 1/2;
+`
+const InpostTextDiv = styled.div`
+grid-column: 3/4;
+grid-row: 2/3;
+`
+const GlsTextDiv = styled.div`
+grid-column: 3/4;
+grid-row: 3/4;
+`
+const DpdTextDiv = styled.div`
+grid-column: 3/4;
+grid-row: 4/5;
+`
+
 const PaymentSection = styled.div`
-width: 33%;
+width: 500px;
+
 `
 
 const Title = styled.h2`
@@ -184,7 +255,8 @@ font-family: Montserrat, sans-serif;
 letter-spacing: 1px;
 `
 
-function FormPage() {
+function FormPage({ onSubmit }) {
+    const navigate = useNavigate()
     const [name, setName] = useState("")
     const [surname, setSurname] = useState("")
     const [mail, setMail] = useState("")
@@ -193,146 +265,175 @@ function FormPage() {
     const [city, setCity] = useState("")
     const [country, setCountry] = useState("")
     const [number, setNumber] = useState()
+    const [delivery, setDelivery] = useState("")
+    const [payment, setPayment] = useState("")
+    const [nameError, setNameError] = useState(false)
 
-    function onChangeValue(event) {
-        console.log(event.target.value)
+    function onChangeDeliveryValue(event) {
+        setDelivery(event.target.value)
+    }
+
+    function onChangePaymentValue(event) {
+        setPayment(event.target.value)
+    }
+
+    function isFormValid() {
+        let isValid = true
+        if (name === "") {
+            console.log(name, name === "")
+            setNameError(true)
+            isValid = false
+        }
+        console.log(nameError)
+        return isValid
+    }
+
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        if (isFormValid()) {
+            const data = { name, surname, mail, zipCode, city, country, number, delivery, payment }
+            onSubmit(data)
+            navigate("/summary")
+        }
+
     }
 
     return <>
-        <Form>
-            <PersonalDataSection>
-                <FactureTitle>dane do faktury</FactureTitle>
-                <div>
-                    <Label ></Label>
-                    <Input type="text" placeholder="Imię" value={name} onChange={event => setName(event.target.value)}></Input>
-                </div>
-                <div>
-                    <Label></Label>
-                    <Input type="text" placeholder="Nazwisko" value={surname} onChange={event => setSurname(event.target.value)}></Input>
-                </div>
-                <div>
-                    <Label>  </Label>
-                    <Input type="email" placeholder="E-mail" value={mail} onChange={setMail}></Input>
-                </div>
+        <Form onSubmit={handleSubmit}>
+            <FormDiv>
+                <PersonalDataSection>
+                    <FactureTitle>dane do faktury</FactureTitle>
+                    <div>
+                        {nameError ? "Uzupełnij imię" : null}
+                        <Label></Label>
+                        <Input type="text" placeholder="Imię" value={name} onChange={event => setName(event.target.value)}></Input>
+                    </div>
+                    <div>
+                        <Label></Label>
+                        <Input type="text" placeholder="Nazwisko" value={surname} onChange={event => setSurname(event.target.value)}></Input>
+                    </div>
+                    <div>
+                        <Label></Label>
+                        <Input type="email" placeholder="E-mail" value={mail} onChange={event => setMail(event.target.value)}></Input>
+                    </div>
 
-                <p>adres dostawy</p>
+                    <p>adres dostawy</p>
 
-                <div>
-                    <Label></Label>
-                    <Input type="text" placeholder="Ulica i numer" value={address} onChange={event => setAddress(event.target.value)}></Input>
-                </div>
-                <div>
-                    <Label></Label>
-                    <Input type="number" placeholder="Kod pocztowy" value={zipCode} onChange={event => setZipCode(event.target.value)}></Input>
-                </div>
-                <div>
-                    <Label></Label>
-                    <Input type="text" placeholder="Miasto" value={city} onChange={event => setCity(event.target.value)}></Input>
-                </div>
-                <div>
-                    <Label></Label>
-                    <Input type="text" placeholder="Kraj" value={country} onChange={event => setCountry(event.target.value)}></Input>
-                </div>
-                <div>
-                    <Label></Label>
-                    <Input type="tel" placeholder="Nr telefonu" value={number} onChange={event => setNumber(event.target.value)}></Input>
-                </div>
+                    <div>
+                        <Label></Label>
+                        <Input type="text" placeholder="Ulica i numer" value={address} onChange={event => setAddress(event.target.value)}></Input>
+                    </div>
+                    <div>
+                        <Label></Label>
+                        <Input type="number" placeholder="Kod pocztowy" value={zipCode} onChange={event => setZipCode(event.target.value)}></Input>
+                    </div>
+                    <div>
+                        <Label></Label>
+                        <Input type="text" placeholder="Miasto" value={city} onChange={event => setCity(event.target.value)}></Input>
+                    </div>
+                    <div>
+                        <Label></Label>
+                        <Input type="text" placeholder="Kraj" value={country} onChange={event => setCountry(event.target.value)}></Input>
+                    </div>
+                    <div>
+                        <Label></Label>
+                        <Input type="tel" placeholder="Nr telefonu" value={number} onChange={event => setNumber(event.target.value)}></Input>
+                    </div>
 
-            </PersonalDataSection>
-            <DeliverySection>
-                <DeliveryTitle>dostawa</DeliveryTitle>
-                <DeliveryList>
-                    <DeliveryChoice>
-                        <DeliveryInput
+                </PersonalDataSection>
+                <DeliverySection>
+                    <DeliveryTitle>dostawa</DeliveryTitle>
+                    <DeliveryList>
+
+                        <SelfInput
                             type="radio"
                             name="dostawa"
                             value="odbiór własny"
-                            onChange={onChangeValue}
+                            onChange={onChangeDeliveryValue}
                         />
-                        <DeliveryTextDiv>
-                            <Icon src={self} />
+                        <SelfIcon src={self} />
+                        <SelfTextDiv>
                             <DeliveryFirm>Odbiór własny</DeliveryFirm>
                             <DeliveryDuration>1-5 dni roboczych</DeliveryDuration>
                             <Price>ZA DARMO</Price>
-                        </DeliveryTextDiv>
-                    </DeliveryChoice>
-                    <DeliveryChoice>
-                        <DeliveryInput
+                        </SelfTextDiv>
+
+                        <InpostInput
                             type="radio"
                             name="dostawa"
                             value="inpost"
-                            onChange={onChangeValue}
+                            onChange={onChangeDeliveryValue}
                         />
-                        <DeliveryTextDiv>
-                            <Icon src={inpost} />
+                        <InpostIcon src={inpost} />
+                        <InpostTextDiv>
                             <DeliveryFirm>Inpost paczkomaty 24/7</DeliveryFirm>
                             <DeliveryDuration>1-3 dni roboczych</DeliveryDuration>
                             <Price>ZA DARMO</Price>
-                        </DeliveryTextDiv>
-                    </DeliveryChoice>
-                    <DeliveryChoice>
-                        <DeliveryInput
+                        </InpostTextDiv>
+
+                        <GlsInput
                             type="radio"
                             name="dostawa"
                             value="gls"
-                            onChange={onChangeValue}
+                            onChange={onChangeDeliveryValue}
                         />
-                        <DeliveryTextDiv>
-                            <Icon src={glsLogo} />
+                        <GlsIcon src={glsLogo} />
+                        <GlsTextDiv>
                             <DeliveryFirm>Wysyłka kurierem GLS</DeliveryFirm>
                             <DeliveryDuration>1-3 dni roboczych</DeliveryDuration>
                             <Price>ZA DARMO</Price>
-                        </DeliveryTextDiv>
-                    </DeliveryChoice>
-                    <DeliveryChoice>
+                        </GlsTextDiv>
 
-                        <DeliveryInput
+                        <DpdInput
                             type="radio"
                             name="dostawa"
                             value="dpd"
-                            onChange={onChangeValue}
+                            onChange={onChangeDeliveryValue}
                         />
-                        <DeliveryTextDiv>
-                            <Icon src={dpd} />
+                        <DpdIcon src={dpd} />
+                        <DpdTextDiv>
                             <DeliveryFirm>Wysyłka kurierem DPD</DeliveryFirm>
                             <DeliveryDuration>1-4 dni roboczych</DeliveryDuration>
                             <Price>ZA DARMO</Price>
-                        </DeliveryTextDiv>
-                    </DeliveryChoice>
-                </DeliveryList>
-            </DeliverySection>
-            <PaymentSection>
-                <Title>wybierz płatność</Title>
-                <PaymentList>
+                        </DpdTextDiv>
+                    </DeliveryList>
+                </DeliverySection>
+                <PaymentSection>
+                    <Title>wybierz płatność</Title>
+                    <PaymentList>
 
-                    <CashInput
-                        type="radio"
-                        name="płatność"
-                        value="gotówka"
-                        onChange={onChangeValue}
-                    />
-                    <CashIcon src={gotówka}></CashIcon>
-                    <Name>Gotówka</Name>
-                    <BlikInput
-                        type="radio"
-                        name="blik"
-                        value="blik"
-                        onChange={onChangeValue}
-                    />
-                    <BlikIcon src={blik}></BlikIcon>
-                    <Name>Blik</Name>
-                    <CardInput
-                        type="radio"
-                        name="card"
-                        value="card"
-                        onChange={onChangeValue}
-                    />
-                    <CardIcon src={karta}></CardIcon>
-                    <Name>Karta debetowa</Name>
-                </PaymentList>
-            </PaymentSection>
+                        <CashInput
+                            type="radio"
+                            name="płatność"
+                            value="gotówka"
+                            onChange={onChangePaymentValue}
+                        />
+                        <CashIcon src={gotówka}></CashIcon>
+                        <Name>Gotówka</Name>
+                        <BlikInput
+                            type="radio"
+                            name="płatność"
+                            value="blik"
+                            onChange={onChangePaymentValue}
+                        />
+                        <BlikIcon src={blik}></BlikIcon>
+                        <Name>Blik</Name>
+                        <CardInput
+                            type="radio"
+                            name="płatność"
+                            value="card"
+                            onChange={onChangePaymentValue}
+                        />
+                        <CardIcon src={karta}></CardIcon>
+                        <Name>Karta debetowa</Name>
+                    </PaymentList>
+                </PaymentSection>
+            </FormDiv>
+            <div>
+                <PaymentButton type="submit">Kupuję</PaymentButton>
+            </div>
         </Form >
-        <Link to="/summary"><PaymentButton>Kupuję</PaymentButton></Link>
     </>
 }
 

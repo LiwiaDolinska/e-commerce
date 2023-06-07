@@ -13,7 +13,6 @@ display: flex;
 max-width: 100%;
 justify-content: center;
 margin-top: 50px;
-background-color: ${props => props.isGrey ? "grey" : "white"}   ///?????
 `
 
 const PhotoSection = styled.div`
@@ -80,7 +79,7 @@ function ProductPage(props) {
     const product = allProducts.find(product => product.id === params.productId)
     const isFavourite = !!favouriteProducts.find(id => id === params.productId)
     const [size, setSize] = useState("XS");
-    const [show, setShow] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
     const handleClick = (item) => {
         const doubledProduct = productsInBasket.find(product => product.id === item.id)
@@ -88,7 +87,7 @@ function ProductPage(props) {
             onChangeQuantity(item.id, item.quantity + 1)
         } else {
             onAddToBasket(item)
-            setShow(true)
+            setShowModal(true)
         }
 
     }
@@ -108,7 +107,7 @@ function ProductPage(props) {
         }
     }
 
-    return <Section isGrey={props.isModal}>
+    return <Section>
         <PhotoSection>
             <Photo src={product.src} />
         </PhotoSection>
@@ -130,7 +129,7 @@ function ProductPage(props) {
             </div>
             <Description>{product.description}</Description>
         </DescriptionSection>
-        <Modal show={show} onClose={() => setShow(false)} />
+        <Modal show={showModal} onClose={() => setShowModal(false)} />
     </Section>
 
 }

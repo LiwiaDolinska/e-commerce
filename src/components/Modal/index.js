@@ -40,7 +40,15 @@ background-color: white;
 cursor: pointer;
 font-size: 17px;
 `
-
+const ModalOverlay = styled.div`
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+background-color: grey;
+opacity: 0.5;
+`
 
 function Modal(props) {
     if (!props.show) {
@@ -48,15 +56,18 @@ function Modal(props) {
     }
 
 
-    return <ModalBox isModal>
-        <FontAwesomeIcon icon={faCircleCheck} size="3x" color="green" />
-        <Text>Produkt został dodany do koszyka</Text>
-        {/* <ProductBox></ProductBox> */}
-        <ButtonBox>
-            <Button onClick={props.onClose}>Kontynuuj zakupy</Button>
-            <Link to="/basket"><Button>Przejdź do koszyka</Button></Link>
-        </ButtonBox>
-    </ModalBox>
+    return <>
+        <ModalOverlay onClick={props.onClose}></ModalOverlay>
+        <ModalBox>
+            <FontAwesomeIcon icon={faCircleCheck} size="3x" color="green" />
+            <Text>Produkt został dodany do koszyka</Text>
+            {/* <ProductBox></ProductBox> */}
+            <ButtonBox>
+                <Button onClick={props.onClose}>Kontynuuj zakupy</Button>
+                <Link to="/basket"><Button>Przejdź do koszyka</Button></Link>
+            </ButtonBox>
+        </ModalBox>
+    </>
 }
 
 export default Modal

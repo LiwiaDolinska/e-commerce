@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faHeart, faBasketShopping } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faBasketShopping } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import logo from "../../assets/photos/logo.jpg";
 import SearchBar from "../SearchBar/SearchBar";
+import Menu from "../Menu/index";
+import { useState } from "react";
 
 const Heading = styled.header`
 display: flex;
@@ -25,18 +27,31 @@ list-style-type: none;
 const ListItem = styled.li`
 padding: 25px;
 font-family: 'Lato', sans-serif;
+cursor: pointer;
 `
 
 const Image = styled.img`
 width: 100px; 
 `
+const Button = styled.button`
+border:none;
+background-color: white;
+cursor: pointer;
+font-family: 'Lato', sans-serif;
+font-size: 17px;
+`
 
 function Header() {
+    const [openMenu, setOpenMenu] = useState(false)
 
+    function handleOpenMenu() {
+        setOpenMenu(true)
+
+    }
     return <Heading>
         <Navigation>
             <List>
-                <ListItem>Menu</ListItem>
+                <ListItem><Button onClick={() => handleOpenMenu(<Menu open={openMenu} />)}>Menu</Button></ListItem>
 
                 <ListItem><SearchBar></SearchBar></ListItem>
             </List>
@@ -46,7 +61,6 @@ function Header() {
                 </List>
             </Link>
             <List>
-                <ListItem><FontAwesomeIcon icon={faUser} style={{ paddingRight: "10px" }} />Konto</ListItem>
                 <ListItem><Link to="favourite"><FontAwesomeIcon icon={faHeart} style={{ paddingRight: "10px" }} />Ulubione</Link></ListItem>
                 <ListItem><Link to="basket"> <FontAwesomeIcon icon={faBasketShopping} style={{ paddingRight: "10px" }} />Koszyk</Link></ListItem>
             </List>

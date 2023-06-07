@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faCcMastercard, faCcVisa, faPaypal, faGooglePay } from "@fortawesome/free-brands-svg-icons"
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 

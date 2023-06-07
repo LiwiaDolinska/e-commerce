@@ -18,6 +18,8 @@ import SummaryPage from "./pages/SummaryPage"
 function App() {
   const [productsInBasket, setProductsInBasket] = useState([])
   const [favouriteProducts, setFavouriteProducts] = useState([])
+  const [formData, setFormData] = useState()
+
 
   const handleAddProduct = (item) => {
     setProductsInBasket([...productsInBasket, item])
@@ -43,6 +45,11 @@ function App() {
     setFavouriteProducts(productsWithoutRemoved)
   }
 
+  const handleFormData = (data) => {
+    setFormData(data)
+  }
+
+
   return (
     <>
       <Header />
@@ -57,8 +64,8 @@ function App() {
         <Route path="basket" element={<BasketPage productsInBasket={productsInBasket} handleChangeQuantity={handleChangeQuantity} />} />
         <Route path="favourite" element={<FavouritePage favouriteProducts={favouriteProducts} />} />
         <Route path="search" element={<SearchPage />} />
-        <Route path="form" element={<FormPage />} />
-        {/* <Route path="summary" element={<SummaryPage />} /> */}
+        <Route path="form" element={<FormPage onSubmit={handleFormData} />} />
+        <Route path="summary" element={<SummaryPage formData={formData} />} />
       </Routes>
     </>
   );
