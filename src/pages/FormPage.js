@@ -28,13 +28,20 @@ margin-top: 30px;
 `
 const FormDiv = styled.div`
 display: flex;
-@media (max-width: 850px) {
-    flex-wrap: wrap;
+@media (max-width: 1000px) {
+    flex-direction: column;
 }
+justify-content: center;
 `
 
 const PersonalDataSection = styled.div`
 width: 500px;
+align-self: center;
+
+`
+const InputWithError = styled.div`
+display: flex;
+flex-direction: column;
 `
 
 const Label = styled.label`
@@ -48,13 +55,18 @@ border-top: none;
 border-left: none;
 border-right: none;
 border-bottom: 1px grey solid;
-height: 30px;
-margin-left: 20px;
+height: 40px;
 outline: 0px;
 `
+const Address = styled.p`
+letter-spacing: 2px;
+margin-top: 40px;
+margin-bottom: 40px;
+`
+
 const DeliverySection = styled.div`
 width: 500px;
-padding-left: 20px;
+align-self: center;
 `
 
 const DeliveryTitle = styled.h2`
@@ -63,13 +75,12 @@ font-size: 25px;
 letter-spacing: 2px;
 margin-top: 100px;
 margin-bottom: 100px;
-padding-left: 70px;
 `
 const DeliveryList = styled.ul`
 list-style-type: none;
 display: grid;
-grid-template-columns: 60px 100px 300px;
-grid-template-rows: 150px 150px 150px 150px;
+grid-template-columns: 50px 70px 300px;
+grid-template-rows: 130px 130px 130px 130px;
 `
 
 const SelfInput = styled.input`
@@ -104,9 +115,9 @@ margin-left: 30px;
 const DeliveryFirm = styled.p`
 color: black;
 font-family: Montserrat, sans-serif;
-font-size: 18px;
+font-size: 17px;
 letter-spacing: 1px;
-line-height: 20px;
+line-height: 15px;
 margin-left: 20px;
 margin-right: 20px;
 `
@@ -115,7 +126,6 @@ const DeliveryDuration = styled.p`
 color: #838383;
 font-family: Montserrat, sans-serif;
 font-size: 15px;
-font-size: 18px;
 margin-left: 20px;
 margin-right: 20px;
 `
@@ -123,19 +133,11 @@ margin-right: 20px;
 const Price = styled.p`
 color: rgba(125,207,228,255);
 font-family: Montserrat, sans-serif;
-font-size: 18px;
+font-size: 17px;
 margin-left: 20px;
 margin-right: 20px;
 `
-const PaymentButton = styled.button`
-background-color: black;
-color: white;
-border: 1px black solid;
-height: 60px;
-width: 150px;
-font-size: 20px;
-cursor: pointer;
-`
+
 const SelfIcon = styled.img`
 grid-column: 2/3;
 grid-row: 1/2;
@@ -175,23 +177,27 @@ margin-left: 10px;
 const SelfTextDiv = styled.div`
 grid-column: 3/4;
 grid-row: 1/2;
+align-self: center;
 `
 const InpostTextDiv = styled.div`
 grid-column: 3/4;
 grid-row: 2/3;
+align-self: center;
 `
 const GlsTextDiv = styled.div`
 grid-column: 3/4;
 grid-row: 3/4;
+align-self: center;
 `
 const DpdTextDiv = styled.div`
 grid-column: 3/4;
 grid-row: 4/5;
+align-self: center;
 `
 
 const PaymentSection = styled.div`
 width: 500px;
-
+align-self: center;
 `
 
 const Title = styled.h2`
@@ -205,8 +211,8 @@ margin-left: 20px;
 const PaymentList = styled.ul`
 list-style-type: none;
 display: grid;
-grid-template-columns: 60px 100px 500px;
-grid-template-rows: 100px 100px 100px;
+grid-template-columns: 50px 70px 500px;
+grid-template-rows: 80px 80px 80px;
 `
 
 const CashInput = styled.input`
@@ -254,6 +260,25 @@ align-self: center;
 font-family: Montserrat, sans-serif;
 letter-spacing: 1px;
 `
+const ErrorMessage = styled.span`
+color: red;
+font-size: 10px;
+margin-top: 5px;
+`
+const ButtonDiv = styled.div`
+align-self: center;
+margin-top: 50px;
+`
+
+const PaymentButton = styled.button`
+background-color: black;
+color: white;
+border: 1px black solid;
+height: 60px;
+width: 300px;
+font-size: 20px;
+cursor: pointer;
+`
 
 function FormPage({ onSubmit }) {
     const navigate = useNavigate()
@@ -261,18 +286,26 @@ function FormPage({ onSubmit }) {
     const [surname, setSurname] = useState("")
     const [mail, setMail] = useState("")
     const [address, setAddress] = useState("")
-    const [zipCode, setZipCode] = useState()
+    const [zipCode, setZipCode] = useState("")
     const [city, setCity] = useState("")
     const [country, setCountry] = useState("")
-    const [number, setNumber] = useState()
+    const [number, setNumber] = useState("")
     const [delivery, setDelivery] = useState("")
     const [payment, setPayment] = useState("")
     const [nameError, setNameError] = useState(false)
+    const [surnameError, setSurnameError] = useState(false)
+    const [emailError, setEmailError] = useState(false)
+    const [addressError, setAddressError] = useState(false)
+    const [zipCodeError, setZipCodeError] = useState(false)
+    const [cityError, setCityError] = useState(false)
+    const [countryError, setCountryError] = useState(false)
+    const [numberError, setNumberError] = useState(false)
+    const [deliveryError, setDeliveryError] = useState(false)
+    const [paymentError, setPaymentError] = useState(false)
 
     function onChangeDeliveryValue(event) {
         setDelivery(event.target.value)
     }
-
     function onChangePaymentValue(event) {
         setPayment(event.target.value)
     }
@@ -280,11 +313,71 @@ function FormPage({ onSubmit }) {
     function isFormValid() {
         let isValid = true
         if (name === "") {
-            console.log(name, name === "")
             setNameError(true)
             isValid = false
+        } else {
+            setNameError(false)
         }
-        console.log(nameError)
+        if (surname === "") {
+            setSurnameError(true)
+            isValid = false
+        } else {
+            setSurnameError(false)
+        }
+        if (mail === "") {
+            setEmailError(true)
+            isValid = false
+        } else {
+            setEmailError(false)
+        }
+        if (address === "") {
+            setAddressError(true)
+            isValid = false
+        } else {
+            setAddressError(false)
+        }
+        if (zipCode === "") {
+            setZipCodeError(true)
+            isValid = false
+        } else {
+            setZipCodeError(false)
+        }
+        if (city === "") {
+            setCityError(true)
+            isValid = false
+        } else {
+            setCityError(false)
+        }
+        if (country === "") {
+            setCountryError(true)
+            isValid = false
+        } else {
+            setCountryError(false)
+        }
+        if (mail === "") {
+            setEmailError(true)
+            isValid = false
+        } else {
+            setEmailError(false)
+        }
+        if (number === "") {
+            setNumberError(true)
+            isValid = false
+        } else {
+            setNumberError(false)
+        }
+        if (delivery === "") {
+            setDeliveryError(true)
+            isValid = false
+        } else {
+            setDeliveryError(false)
+        }
+        if (payment === "") {
+            setPaymentError(true)
+            isValid = false
+        } else {
+            setPaymentError(false)
+        }
         return isValid
     }
 
@@ -304,41 +397,49 @@ function FormPage({ onSubmit }) {
             <FormDiv>
                 <PersonalDataSection>
                     <FactureTitle>dane do faktury</FactureTitle>
-                    <div>
-                        {nameError ? "Uzupełnij imię" : null}
+                    <InputWithError>
                         <Label></Label>
                         <Input type="text" placeholder="Imię" value={name} onChange={event => setName(event.target.value)}></Input>
-                    </div>
+                        {nameError ? <ErrorMessage>Uzupełnij Imię</ErrorMessage> : null}
+                    </InputWithError>
                     <div>
                         <Label></Label>
                         <Input type="text" placeholder="Nazwisko" value={surname} onChange={event => setSurname(event.target.value)}></Input>
+                        {surnameError ? "" : null}
                     </div>
                     <div>
                         <Label></Label>
                         <Input type="email" placeholder="E-mail" value={mail} onChange={event => setMail(event.target.value)}></Input>
+                        {emailError ? "Uzupełnij e-mail" : null}
                     </div>
 
-                    <p>adres dostawy</p>
+                    <Address>adres dostawy</Address>
 
                     <div>
                         <Label></Label>
                         <Input type="text" placeholder="Ulica i numer" value={address} onChange={event => setAddress(event.target.value)}></Input>
+                        {addressError ? "Uzupełnij adres" : null}
                     </div>
                     <div>
                         <Label></Label>
-                        <Input type="number" placeholder="Kod pocztowy" value={zipCode} onChange={event => setZipCode(event.target.value)}></Input>
+                        <Input type="text" placeholder="Kod pocztowy" value={zipCode} onChange={event => setZipCode(event.target.value)}></Input>
+                        {zipCodeError ? "Uzupełnij kod pocztowy" : null}
                     </div>
                     <div>
                         <Label></Label>
                         <Input type="text" placeholder="Miasto" value={city} onChange={event => setCity(event.target.value)}></Input>
+                        {cityError ? "Uzupełnij nazwę miasta" : null}
                     </div>
                     <div>
                         <Label></Label>
                         <Input type="text" placeholder="Kraj" value={country} onChange={event => setCountry(event.target.value)}></Input>
+                        {countryError ? "Uzupełnij nazwę kraju" : null}
                     </div>
                     <div>
                         <Label></Label>
-                        <Input type="tel" placeholder="Nr telefonu" value={number} onChange={event => setNumber(event.target.value)}></Input>
+                        <Input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" placeholder="Nr telefonu" value={number} onChange={event => setNumber(event.target.value)}></Input>
+                        <small>Format: 123-456-7890</small>
+                        {numberError ? "Uzupełnij numer telefonu" : null}
                     </div>
 
                 </PersonalDataSection>
@@ -396,8 +497,12 @@ function FormPage({ onSubmit }) {
                             <DeliveryFirm>Wysyłka kurierem DPD</DeliveryFirm>
                             <DeliveryDuration>1-4 dni roboczych</DeliveryDuration>
                             <Price>ZA DARMO</Price>
+
                         </DpdTextDiv>
+
                     </DeliveryList>
+                    {deliveryError ? "Wybierz sposób dostawy" : null}
+
                 </DeliverySection>
                 <PaymentSection>
                     <Title>wybierz płatność</Title>
@@ -428,11 +533,12 @@ function FormPage({ onSubmit }) {
                         <CardIcon src={karta}></CardIcon>
                         <Name>Karta debetowa</Name>
                     </PaymentList>
+                    {paymentError ? "Wybierz sposób płatności" : null}
                 </PaymentSection>
             </FormDiv>
-            <div>
+            <ButtonDiv>
                 <PaymentButton type="submit">Kupuję</PaymentButton>
-            </div>
+            </ButtonDiv>
         </Form >
     </>
 }

@@ -51,8 +51,8 @@ function Header() {
     return <Heading>
         <Navigation>
             <List>
-                <ListItem><Button onClick={() => handleOpenMenu(<Menu open={openMenu} />)}>Menu</Button></ListItem>
-
+                <ListItem><Button onClick={() => handleOpenMenu()}>Menu</Button></ListItem>
+                <Menu open={openMenu} />
                 <ListItem><SearchBar></SearchBar></ListItem>
             </List>
             <Link to="/">

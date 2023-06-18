@@ -1,9 +1,8 @@
 import { useState } from "react"
 
-function Menu() {
-    const [selected, setSelected] = useState(null)
-    function handleChange(event) {
-        setSelected(event.target.value)
+function Menu({ open }) {
+    if (!open) {
+        return null
     }
     return <div>
         <ul>
