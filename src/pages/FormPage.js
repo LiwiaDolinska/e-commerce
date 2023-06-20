@@ -34,11 +34,6 @@ display: flex;
 justify-content: center;
 `
 
-const PersonalDataSection = styled.div`
-width: 500px;
-align-self: center;
-
-`
 const InputWithError = styled.div`
 display: flex;
 flex-direction: column;
@@ -58,15 +53,12 @@ border-bottom: 1px grey solid;
 height: 40px;
 outline: 0px;
 `
-const Address = styled.p`
-letter-spacing: 2px;
-margin-top: 40px;
-margin-bottom: 40px;
-`
 
-const DeliverySection = styled.div`
-width: 500px;
-align-self: center;
+const Section = styled.div`
+width: 400px;
+display: flex;
+flex-direction: column;
+align-items: center;
 `
 
 const DeliveryTitle = styled.h2`
@@ -195,11 +187,6 @@ grid-row: 4/5;
 align-self: center;
 `
 
-const PaymentSection = styled.div`
-width: 500px;
-align-self: center;
-`
-
 const Title = styled.h2`
 font-family: Montserrat, sans-serif;
 letter-spacing: 2px;
@@ -211,7 +198,7 @@ margin-left: 20px;
 const PaymentList = styled.ul`
 list-style-type: none;
 display: grid;
-grid-template-columns: 50px 70px 500px;
+grid-template-columns: 50px 70px 200px;
 grid-template-rows: 80px 80px 80px;
 `
 
@@ -265,6 +252,13 @@ color: red;
 font-size: 10px;
 margin-top: 5px;
 `
+
+const RadioErrorMessage = styled.span`
+color: red;
+font-size: 12px;
+
+`
+
 const ButtonDiv = styled.div`
 align-self: center;
 margin-top: 50px;
@@ -395,55 +389,51 @@ function FormPage({ onSubmit }) {
     return <>
         <Form onSubmit={handleSubmit}>
             <FormDiv>
-                <PersonalDataSection>
+                <Section>
                     <FactureTitle>dane do faktury</FactureTitle>
                     <InputWithError>
                         <Label></Label>
                         <Input type="text" placeholder="Imię" value={name} onChange={event => setName(event.target.value)}></Input>
-                        {nameError ? <ErrorMessage>Uzupełnij Imię</ErrorMessage> : null}
+                        {nameError ? <ErrorMessage>Uzupełnij imię</ErrorMessage> : null}
                     </InputWithError>
-                    <div>
+                    <InputWithError>
                         <Label></Label>
                         <Input type="text" placeholder="Nazwisko" value={surname} onChange={event => setSurname(event.target.value)}></Input>
-                        {surnameError ? "" : null}
-                    </div>
-                    <div>
+                        {surnameError ? <ErrorMessage>Uzupełnij nazwisko</ErrorMessage> : null}
+                    </InputWithError>
+                    <InputWithError>
                         <Label></Label>
                         <Input type="email" placeholder="E-mail" value={mail} onChange={event => setMail(event.target.value)}></Input>
-                        {emailError ? "Uzupełnij e-mail" : null}
-                    </div>
-
-                    <Address>adres dostawy</Address>
-
-                    <div>
+                        {emailError ? <ErrorMessage>Uzupełnij e-mail</ErrorMessage> : null}
+                    </InputWithError>
+                    <InputWithError>
                         <Label></Label>
                         <Input type="text" placeholder="Ulica i numer" value={address} onChange={event => setAddress(event.target.value)}></Input>
-                        {addressError ? "Uzupełnij adres" : null}
-                    </div>
-                    <div>
+                        {addressError ? <ErrorMessage>Uzupełnij adres</ErrorMessage> : null}
+                    </InputWithError>
+                    <InputWithError>
                         <Label></Label>
                         <Input type="text" placeholder="Kod pocztowy" value={zipCode} onChange={event => setZipCode(event.target.value)}></Input>
-                        {zipCodeError ? "Uzupełnij kod pocztowy" : null}
-                    </div>
-                    <div>
+                        {zipCodeError ? <ErrorMessage>Uzupełnij kod pocztowy</ErrorMessage> : null}
+                    </InputWithError>
+                    <InputWithError>
                         <Label></Label>
                         <Input type="text" placeholder="Miasto" value={city} onChange={event => setCity(event.target.value)}></Input>
-                        {cityError ? "Uzupełnij nazwę miasta" : null}
-                    </div>
-                    <div>
+                        {cityError ? <ErrorMessage>Uzupełnij nazwę miasta</ErrorMessage> : null}
+                    </InputWithError>
+                    <InputWithError>
                         <Label></Label>
                         <Input type="text" placeholder="Kraj" value={country} onChange={event => setCountry(event.target.value)}></Input>
-                        {countryError ? "Uzupełnij nazwę kraju" : null}
-                    </div>
-                    <div>
+                        {countryError ? <ErrorMessage>Uzupełnij kraj</ErrorMessage> : null}
+                    </InputWithError>
+                    <InputWithError>
                         <Label></Label>
-                        <Input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" placeholder="Nr telefonu" value={number} onChange={event => setNumber(event.target.value)}></Input>
-                        <small>Format: 123-456-7890</small>
-                        {numberError ? "Uzupełnij numer telefonu" : null}
-                    </div>
+                        <Input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" placeholder="Nr tel - format: 123-456-789" value={number} onChange={event => setNumber(event.target.value)}></Input>
+                        {numberError ? <ErrorMessage>Uzupełnij numer telefonu</ErrorMessage> : null}
+                    </InputWithError>
 
-                </PersonalDataSection>
-                <DeliverySection>
+                </Section>
+                <Section>
                     <DeliveryTitle>dostawa</DeliveryTitle>
                     <DeliveryList>
 
@@ -501,10 +491,10 @@ function FormPage({ onSubmit }) {
                         </DpdTextDiv>
 
                     </DeliveryList>
-                    {deliveryError ? "Wybierz sposób dostawy" : null}
+                    {deliveryError ? <RadioErrorMessage>Wybierz sposób dostawy</RadioErrorMessage> : null}
 
-                </DeliverySection>
-                <PaymentSection>
+                </Section>
+                <Section>
                     <Title>wybierz płatność</Title>
                     <PaymentList>
 
@@ -533,8 +523,8 @@ function FormPage({ onSubmit }) {
                         <CardIcon src={karta}></CardIcon>
                         <Name>Karta debetowa</Name>
                     </PaymentList>
-                    {paymentError ? "Wybierz sposób płatności" : null}
-                </PaymentSection>
+                    {paymentError ? <RadioErrorMessage>Wybierz sposób płatności</RadioErrorMessage> : null}
+                </Section>
             </FormDiv>
             <ButtonDiv>
                 <PaymentButton type="submit">Kupuję</PaymentButton>
