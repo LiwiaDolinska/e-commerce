@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
-import ProductBox from "../ProductBox";
 import { Link } from "react-router-dom";
 
 
@@ -61,7 +60,6 @@ function Modal(props) {
         <ModalBox>
             <FontAwesomeIcon icon={faCircleCheck} size="3x" color="green" />
             <Text>Produkt został dodany do koszyka</Text>
-            {/* <ProductBox></ProductBox> */}
             <ButtonBox>
                 <Button onClick={props.onClose}>Kontynuuj zakupy</Button>
                 <Link to="/basket"><Button>Przejdź do koszyka</Button></Link>

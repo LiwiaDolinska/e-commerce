@@ -1,6 +1,6 @@
 import MainPage from "./pages/MainPage";
 import CollectionPage from "./pages/CollectionPage";
-import { Routes, Route, Link, useSearchParams } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { womenCollectionPhotos } from "./collectionPhotos";
 import { menCollectionPhotos } from "./collectionPhotos";
 import CategoryPage from "./pages/CategoryPage";
@@ -10,7 +10,6 @@ import Header from "./components/Header";
 import BasketPage from "./pages/BasketPage";
 import { useState } from "react";
 import FavouritePage from "./pages/FavouritePage";
-import { faV } from "@fortawesome/free-solid-svg-icons";
 import SearchPage from "./pages/SearchPage";
 import FormPage from "./pages/FormPage";
 import SummaryPage from "./pages/SummaryPage"

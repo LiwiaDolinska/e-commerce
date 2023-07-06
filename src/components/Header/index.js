@@ -44,17 +44,21 @@ font-size: 17px;
 function Header() {
     const [openMenu, setOpenMenu] = useState(false)
 
-    function handleToogleMenu() {
+
+    function handleShowMenu() {
         setOpenMenu(true)
-        if (openMenu) {
-            setOpenMenu(false)
-        }
+
     }
+
+    function handleHideMenu() {
+        setOpenMenu(false)
+    }
+
     return <Heading>
         <Navigation>
             <List>
-                <div>
-                    <ListItem><Button onClick={() => handleToogleMenu()}>Menu</Button></ListItem>
+                <div onMouseEnter={handleShowMenu} onMouseLeave={handleHideMenu}>
+                    <ListItem><Button>Menu</Button></ListItem>
                     <Menu open={openMenu} />
                 </div>
                 <ListItem><SearchBar></SearchBar></ListItem>

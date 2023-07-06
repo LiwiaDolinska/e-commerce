@@ -4,7 +4,7 @@ import ProductBox from "../components/ProductBox"
 import Listing from "../components/Listing"
 
 function SearchPage() {
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams] = useSearchParams()
     const searchValue = searchParams.get("phrase")
     const filteredProducts = allProducts.filter((product) => {
         return product.title.toLowerCase() === searchValue.toLowerCase()
