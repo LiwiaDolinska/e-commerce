@@ -8,8 +8,11 @@ import SearchBar from "../SearchBar/SearchBar";
 import Menu from "../Menu/index";
 import { useState } from "react";
 
+export const headingHeight = 110;
+
 const Heading = styled.header`
 display: flex;
+height: ${headingHeight}px;
 `
 const Navigation = styled.nav`
 display: flex;
@@ -69,8 +72,8 @@ function Header() {
                 </List>
             </Link>
             <List>
-                <ListItem><Link to="favourite"><FontAwesomeIcon icon={faHeart} style={{ paddingRight: "10px" }} />Ulubione</Link></ListItem>
-                <ListItem><Link to="basket"> <FontAwesomeIcon icon={faBasketShopping} style={{ paddingRight: "10px" }} />Koszyk</Link></ListItem>
+                <ListItem><Link to="favourite" style={{ textDecoration: "none" }}><FontAwesomeIcon icon={faHeart} style={{ paddingRight: "10px" }} />Ulubione</Link></ListItem>
+                <ListItem><Link to="basket" style={{ textDecoration: "none" }}> <FontAwesomeIcon icon={faBasketShopping} style={{ paddingRight: "10px" }} />Koszyk</Link></ListItem>
             </List>
 
         </Navigation>

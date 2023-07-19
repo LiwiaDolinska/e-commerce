@@ -2,6 +2,14 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import styled from 'styled-components';
+
+const Input = styled.input`
+border: none;
+&:focus {
+outline: none;
+}
+`
 
 
 function SearchBar() {
@@ -13,9 +21,9 @@ function SearchBar() {
 
     }
     return <div>
-        <FontAwesomeIcon icon={faMagnifyingGlass} style={{ paddingRight: "10px" }} />
         <form onSubmit={handleSubmit}>
-            <input placeholder='Szukaj' value={searchValue} onChange={(event) => setSearchValue(event.target.value)}></input>
+            <FontAwesomeIcon icon={faMagnifyingGlass} style={{ paddingRight: "10px" }} />
+            <Input placeholder='Szukaj' value={searchValue} onChange={(event) => setSearchValue(event.target.value)}></Input>
         </form>
     </div>
 }

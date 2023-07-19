@@ -1,6 +1,6 @@
 import { useState } from "react"
 import styled from "styled-components"
-import { menCollectionPhotos } from "../../collectionPhotos";
+import { menCollectionPhotos, womenCollectionPhotos } from "../../collectionPhotos";
 import { Link } from "react-router-dom";
 
 
@@ -18,6 +18,7 @@ height: 100px;
   position: absolute;
   top: 65px;
     left: 70px;
+    z-index: 1;
 `
 const MenuList = styled.ul`
 width: 100%;
@@ -49,21 +50,32 @@ const SubMenuItem = styled.div`
 
 `
 const CategoryList = styled.ul`
-
+list-style-type: none;
+padding-inline-start: 0;
+width: 100%;
+display: flex;
+flex-direction: column;
 `
 
 const CategoryItem = styled.li`
 &:hover{
   background-color: rgb(187, 247, 247);
 }
+text-transform: uppercase;
+display: flex;
+justify-content: center;
+width: 100%;
+color: black;
 `
+
 
 function Menu({ open }) {
   const [showMenCategory, setShowMenCategory] = useState(false)
+  const [showWomenCategory, setShowWomenCategory] = useState(false)
 
-  // if (!open) {
-  //   return null
-  // }
+  if (!open) {
+    return null
+  }
 
 
   function handleShowMenCategory() {
@@ -74,13 +86,25 @@ function Menu({ open }) {
     setShowMenCategory(false)
   }
 
+  function handleShowWomenCategory() {
+    setShowWomenCategory(true)
+  }
+
+  function handleHideWomenCategory() {
+    setShowWomenCategory(false)
+  }
+
+
   return <MenuBox>
     <MenuList>
       <MenuItem onMouseEnter={handleShowMenCategory} onMouseLeave={handleHideMenCategory}>
         ON
-        {showMenCategory ? <SubMenuItem><CategoryList>{menCollectionPhotos.map((item) => <Link to={item.link}><CategoryItem>{item.title}</CategoryItem></Link>)}</CategoryList></SubMenuItem> : null}
+        {showMenCategory ? <SubMenuItem><CategoryList>{menCollectionPhotos.map((item) => <Link style={{ textDecoration: "none" }} to={item.link}><CategoryItem>{item.title}</CategoryItem></Link>)}</CategoryList></SubMenuItem> : null}
       </MenuItem>
-      <MenuItem>ONA</MenuItem>
+      <MenuItem onMouseEnter={handleShowWomenCategory} onMouseLeave={handleHideWomenCategory}>
+        ONA
+        {showWomenCategory ? <SubMenuItem><CategoryList>{womenCollectionPhotos.map((item) => <Link style={{ textDecoration: "none" }} to={item.link}><CategoryItem>{item.title}</CategoryItem></Link>)}</CategoryList></SubMenuItem> : null}
+      </MenuItem>
     </MenuList>
   </MenuBox>
 }

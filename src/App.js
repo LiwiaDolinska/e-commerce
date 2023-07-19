@@ -48,6 +48,30 @@ function App() {
     setFormData(data)
   }
 
+  const menCategoryPages = {
+    blouse: "bluzki",
+    coat: "płaszcze",
+    sweater: "swetry",
+    "t-shirt": "t-shirty",
+    trousers: "spodnie",
+    elegant: "eleganckie"
+
+  }
+
+  const menKeys = Object.keys(menCategoryPages)
+
+  const womenCategoryPages = {
+    blouse: "bluzki",
+    dress: "sukienki",
+    coat: "płaszcze",
+    romper: "kombinezony",
+    skirt: "spódnice",
+    sweater: "swetry",
+    "t-shirt": "t-shirty"
+  }
+
+  const womenKeys = Object.keys(womenCategoryPages)
+
 
   return (
     <>
@@ -57,8 +81,8 @@ function App() {
         <Route path="account" element={<div>Account</div>} />
         <Route path="collection/women" element={<CollectionPage title="Women Collection" data={womenCollectionPhotos} />} />
         <Route path="collection/men" element={<CollectionPage title="Men Collection" data={menCollectionPhotos} />} />
-        <Route path="collection/women/*" element={<CategoryPage title="Bluzki" data={womenCategoryProducts} />} />
-        <Route path="collection/men/*" element={<CategoryPage title="Eleganckie" data={menCategoryProducts} />} />
+        {womenKeys.map((key) => <Route path={`collection/women/${key}`} element={<CategoryPage title={womenCategoryPages[key]} data={womenCategoryProducts} />} />)}
+        {menKeys.map((key) => <Route path={`collection/men/${key}`} element={<CategoryPage title={menCategoryPages[key]} data={menCategoryProducts} />} />)}
         <Route path="product/:productId" element={<ProductPage onAddToBasket={handleAddProduct} onAddToFavourite={handleAddToFavourite} onRemoveFromFavourite={handleRemoveFromFavourite} favouriteProducts={favouriteProducts} onChangeQuantity={handleChangeQuantity} productsInBasket={productsInBasket} />} />
         <Route path="basket" element={<BasketPage productsInBasket={productsInBasket} handleChangeQuantity={handleChangeQuantity} />} />
         <Route path="favourite" element={<FavouritePage favouriteProducts={favouriteProducts} />} />

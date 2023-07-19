@@ -15,6 +15,9 @@ margin-top: 100px;
 
 const Container = styled.div`
 display: flex;
+@media (max-width: 1100px) {
+    flex-direction: column;
+}
 `
 
 const GridContainer = styled.div`
@@ -35,6 +38,13 @@ height: auto;
 font-family: Montserrat, sans-serif;
 letter-spacing: 3px;
 font-weight: 400;
+@media (max-width: 1100px) {
+     margin-top: 50px;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
 `
 
 const Item = styled.p`

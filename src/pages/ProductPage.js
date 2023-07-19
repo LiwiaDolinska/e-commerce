@@ -13,6 +13,10 @@ display: flex;
 max-width: 100%;
 justify-content: center;
 margin-top: 50px;
+@media (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+}
 `
 
 const PhotoSection = styled.div`
