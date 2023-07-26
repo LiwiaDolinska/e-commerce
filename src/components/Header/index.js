@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faBasketShopping } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
@@ -7,42 +6,9 @@ import logo from "../../assets/photos/logo.jpg";
 import SearchBar from "../SearchBar/SearchBar";
 import Menu from "../Menu/index";
 import { useState } from "react";
+import { Heading, Navigation, List, ListItem, Image, Button } from "./styles"
 
-export const headingHeight = 110;
 
-const Heading = styled.header`
-display: flex;
-height: ${headingHeight}px;
-`
-const Navigation = styled.nav`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-width: 100%;
-`
-
-const List = styled.ul`
-display: flex;
-flex-direction: row;
-list-style-type: none;
-`
-
-const ListItem = styled.li`
-padding: 25px;
-font-family: 'Lato', sans-serif;
-cursor: pointer;
-`
-
-const Image = styled.img`
-width: 100px; 
-`
-const Button = styled.button`
-border:none;
-background-color: white;
-cursor: pointer;
-font-family: 'Lato', sans-serif;
-font-size: 17px;
-`
 
 function Header() {
     const [openMenu, setOpenMenu] = useState(false)

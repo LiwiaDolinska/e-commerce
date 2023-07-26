@@ -5,6 +5,10 @@ import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faCcMastercard, faCcVisa, faPaypal, faGooglePay } from "@fortawesome/free-brands-svg-icons"
 import { Link } from "react-router-dom";
 
+const Divider = styled.hr`
+border-top: 1px solid rgb(232, 232, 232);
+width: 100%;
+`
 
 const Title = styled.h1`
 text-align: center;
@@ -93,7 +97,16 @@ color: white;
 font-size: 17px;
 cursor: pointer;
 margin-bottom:40px;
+@media (max-width: 1100px) {
+    height: 50px;
+    width: 200px;
+    margin: 40px;
+}
 `
+const IconBox = styled.div`
+display: flex;
+`
+
 const Icon = styled.button`
 margin: 5px;
 border: none;
@@ -170,12 +183,14 @@ function BasketPage(props) {
                 <br></br>
                 <p>łączna kwota: {sumUpAll()} zł</p>
                 <Link to="/form"><SumUpButton>przejdź do kasy</SumUpButton></Link>
-                <hr style={{ borderTop: "1px solid rgb(232, 232, 232)" }}></hr>
+                <Divider></Divider>
                 <p>akceptowane płatności</p>
-                <Icon><FontAwesomeIcon icon={faPaypal} /></Icon>
-                <Icon><FontAwesomeIcon icon={faCcMastercard} /></Icon>
-                <Icon><FontAwesomeIcon icon={faCcVisa} /></Icon>
-                <Icon><FontAwesomeIcon icon={faGooglePay} /></Icon>
+                <IconBox>
+                    <Icon><FontAwesomeIcon icon={faPaypal} /></Icon>
+                    <Icon><FontAwesomeIcon icon={faCcMastercard} /></Icon>
+                    <Icon><FontAwesomeIcon icon={faCcVisa} /></Icon>
+                    <Icon><FontAwesomeIcon icon={faGooglePay} /></Icon>
+                </IconBox>
             </SumUpContainer>
         </Container >
     </>

@@ -13,6 +13,28 @@ import menTrousers from "./assets/photos/MenCollectionPhotos/trousers.jpg";
 import menElegant from "./assets/photos/MenCollectionPhotos/elegant.jpg";
 
 
+export const menCategoryPages = {
+    blouse: "bluzki",
+    coat: "płaszcze",
+    sweater: "swetry",
+    "t-shirt": "t-shirty",
+    trousers: "spodnie",
+    elegant: "eleganckie"
+
+}
+
+
+export const womenCategoryPages = {
+    blouse: "bluzki",
+    dress: "sukienki",
+    coat: "płaszcze",
+    romper: "kombinezony",
+    skirt: "spódnice",
+    sweater: "swetry",
+    "t-shirt": "t-shirty"
+}
+
+
 
 export const womenCollectionPhotos = [
     { src: womenBlouse, title: "bluzki", link: "/collection/women/blouse" },

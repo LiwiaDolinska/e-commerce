@@ -13,6 +13,7 @@ import FavouritePage from "./pages/FavouritePage";
 import SearchPage from "./pages/SearchPage";
 import FormPage from "./pages/FormPage";
 import SummaryPage from "./pages/SummaryPage"
+import { menCategoryPages, womenCategoryPages } from "./collectionPhotos";
 
 function App() {
   const [productsInBasket, setProductsInBasket] = useState([])
@@ -48,29 +49,9 @@ function App() {
     setFormData(data)
   }
 
-  const menCategoryPages = {
-    blouse: "bluzki",
-    coat: "płaszcze",
-    sweater: "swetry",
-    "t-shirt": "t-shirty",
-    trousers: "spodnie",
-    elegant: "eleganckie"
-
-  }
-
   const menKeys = Object.keys(menCategoryPages)
-
-  const womenCategoryPages = {
-    blouse: "bluzki",
-    dress: "sukienki",
-    coat: "płaszcze",
-    romper: "kombinezony",
-    skirt: "spódnice",
-    sweater: "swetry",
-    "t-shirt": "t-shirty"
-  }
-
   const womenKeys = Object.keys(womenCategoryPages)
+
 
 
   return (
